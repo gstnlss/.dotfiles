@@ -1,25 +1,4 @@
--- TODO: move to own file
-vim.o.tabstop = 8
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.cursorline = true
-vim.o.hidden = true
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.cmdheight = 2
-vim.o.updatetime = 200
-vim.o.signcolumn = 'yes'
-vim.o.wrap = false
-vim.o.colorcolumn = '80'
-vim.o.scrolloff = 10
-vim.o.swapfile = false
-vim.o.ignorecase = true
-vim.cmd[[set shortmess+=c]]
-vim.o.completeopt = 'menuone,noselect'
-
+require('options')
 require('plugins')
 
 vim.g.mapleader = ' '
@@ -54,8 +33,6 @@ vim.api.nvim_set_var('airline_theme', 'gruvbox')
 vim.api.nvim_set_var('airline_powerline_fonts', 1)
 
 require('language_servers')
-
-vim.cmd('colorscheme gruvbox')
 
 -- custom/mine
 vim.api.nvim_set_keymap('n', '<Leader>ss', ':w<CR>', { noremap = true })
