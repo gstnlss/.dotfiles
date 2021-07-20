@@ -1,38 +1,13 @@
 require('options')
 require('plugins')
+require('lsp_settings')
+require('keymaps')
 
-vim.g.mapleader = ' '
-
--- " NERDTree
-vim.api.nvim_set_keymap('n', '<Leader>nn', ':NERDTreeToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>nf', ':NERDTreeFind<CR>', { noremap = true })
 vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
-
--- Telescope
-vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fg', ':Telescope live_grep<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fb', ':Telescope buffers<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fh', ':Telescope help_tags<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fm', ':Telescope man_pages<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fc', ':Telescope current_buffer_fuzzy_find<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fr', ':Telescope lsp_references<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fi', ':Telescope lsp_implementations<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fd', ':Telescope lsp_definitions<CR>', { noremap = true })
-
-vim.api.nvim_set_keymap('n', '<Leader>ca', ':Telescope lsp_code_actions<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>cr', ':Telescope lsp_range_code_actions<CR>', { noremap = true })
-
--- " vim-fugitive
-vim.api.nvim_set_keymap('n', '<Leader>gs', ':G<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gb', ':Telescope git_branches<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gc', ':Telescope git_commits<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gh', ':Telescope git_bcommits<CR>', { noremap = true })
 
 -- " vim-airline
 vim.api.nvim_set_var('airline_theme', 'gruvbox')
 vim.api.nvim_set_var('airline_powerline_fonts', 1)
-
-require('language_servers')
 
 -- custom/mine
 vim.api.nvim_set_keymap('n', '<Leader>ss', ':w<CR>', { noremap = true })
@@ -70,8 +45,3 @@ require'compe'.setup {
   };
 }
 
-vim.api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', { noremap = true, silent = true, expr = true })
-vim.api.nvim_set_keymap('i', '<CR>', 'compe#confirm({ "keys": "<CR>", "select": v:true })', { noremap = true, silent = true, expr = true })
-vim.api.nvim_set_keymap('i', '<C-e>', 'compe#close("<C-e>")', { noremap = true, silent = true, expr = true })
-vim.api.nvim_set_keymap('i', '<C-f>', 'compe#scroll({ "delta": +4 })', { noremap = true, silent = true, expr = true })
-vim.api.nvim_set_keymap('i', '<C-d>', 'compe#scroll({ "delta": -4 })', { noremap = true, silent = true, expr = true })

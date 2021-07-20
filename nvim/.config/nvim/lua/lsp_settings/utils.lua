@@ -1,8 +1,3 @@
-local lspconfig = require 'lspconfig'
--- local util = require' lspconfig/util'
-local root_pattern = lspconfig.util.root_pattern
-
--- Sets the keybindings for the language server
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     -- Sets buffer option
@@ -31,41 +26,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", options)
 end
 
-local servers = {
-    {
-        name = 'sumneko_lua',
-        setup = {
-            on_attach = on_attach,
-            cmd = { '/sbin/lua-language-server', '-E' },
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = 'LuaJIT',
-                        path = vim.split(package.path, ';')
-                    },
-                    diagnostics = {
-                        globals = { 'vim' }
-                    },
-                    workspace = {
-                        library = vim.api.nvim_get_runtime_file("", true)
-                    },
-                    telemetry = {
-                        enable = false
-                    }
-                }
-            }
-        }
-    },
-    {
-        name = 'tsserver',
-        setup = {
-            cmd = { '/sbin/typescript-language-server', '--stdio' },
-            filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
-            root_dir = root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')
-        }
-    }
-}
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp.name].setup(lsp.setup)
-end
+return {
+    on_attach = on_attach,
+    capabilities = capabilities
+}

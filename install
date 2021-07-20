@@ -2,10 +2,12 @@
 
 pushd $HOME/.dotfiles
 
+STOW_FOLDERS=(nvim zsh)
+
 for folder in $STOW_FOLDERS; do
     echo $folder
-    # stow -D $folder
-    # stow $folder 
+    stow -D $folder
+    stow $folder 
 done
 
 popd
