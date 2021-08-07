@@ -1,7 +1,7 @@
 export PATH="$PATH:$HOME/.local/bin" 
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/agustin/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -22,14 +22,9 @@ source $ZSH/oh-my-zsh.sh
 
 if [[ -n $SSH_CONNECTION ]]; then
   PROMPT="%{$fg_bold[red]%}[ssh:%m] ${PROMPT}"
-  export EDITOR='nvim'
-else
-  export EDITOR='nvim'
 fi
 
 alias grep='grep --color=auto'
 alias ip='ip --color=auto'
-
-export STOW_FOLDERS=(nvim zsh)
 
 bindkey -v
