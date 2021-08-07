@@ -2,7 +2,7 @@
 
 pushd $HOME/.dotfiles
 
-STOW_FOLDERS=(nvim zsh tmux)
+STOW_FOLDERS=(nvim zsh tmux misc)
 
 for folder in $STOW_FOLDERS; do
     echo $folder
