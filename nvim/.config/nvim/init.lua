@@ -1,7 +1,10 @@
-require('options')
 require('plugins')
+require('options')
 require('lsp_settings')
 require('keymaps')
+
+vim.api.nvim_set_var('python_host_prog', '/usr/bin/python2')
+vim.api.nvim_set_var('python3_host_prog', '/usr/bin/python3')
 
 vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
 
