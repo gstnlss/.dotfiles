@@ -1,6 +1,7 @@
 local lspconfig = require('lspconfig')
+local on_attach = require('lsp_settings.utils').on_attach
 
-local eslint_settings = {
+local eslint_d = {
   lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
   lintIgnoreExitCode = true,
   lintStdin = true,
@@ -9,25 +10,37 @@ local eslint_settings = {
   formatStdin = true
 }
 
+local prettier = {
+  formatCommand = 'prettier --stdin --stdin-filepath ${INPUT}',
+  formatStdin = true
+}
+
 lspconfig.efm.setup(
   {
     init_options = { documentFormatting = true },
+    on_attach = function(client)
+      on_attach(client)
+      client.resolved_capabilities.document_formatting = true
+    end,
     filetypes = {
       'lua',
       'javascript',
+      'javascript.jsx',
       'javascriptreact',
       'typescript',
+      'typescript.tsx',
       'typescriptreact'
     },
     settings = {
       rootMarkers = { '.git/' },
       languages = {
-        -- TODO: make up some better config for this lua-format
         lua = { { formatCommand = 'lua-format -i', formatStdin = true } },
-        javascript = { eslint_settings },
-        javascriptreact = { eslint_settings },
-        typescript = { eslint_settings },
-        typescriptreact = { eslint_settings }
+        javascript = { prettier, eslint_d },
+        ['javascript.jsx'] = { prettier, eslint_d },
+        javascriptreact = { prettier, eslint_d },
+        typescript = { prettier, eslint_d },
+        ['typescript.tsx'] = { prettier, eslint_d },
+        typescriptreact = { prettier, eslint_d }
       }
     }
   }
