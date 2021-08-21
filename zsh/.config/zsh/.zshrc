@@ -1,4 +1,5 @@
-export PATH="$PATH:$HOME/.local/bin" 
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$HOME/.local/bin:$GEM_HOME/bin" 
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
