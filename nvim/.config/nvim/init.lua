@@ -3,9 +3,22 @@ require('options')
 require('lsp_settings')
 require('keymaps')
 
+local does_file_exist = require('utils').does_file_exist
+
+local function get_node_neovim_path()
+  local arch_path = '/usr/bin/neovim-node-host'
+  local wsl_path = '/usr/local/bin/neovim-node-host'
+
+  if (does_file_exist(arch_path)) then
+    return arch_path
+  else
+    return wsl_path
+  end
+end
+
 vim.api.nvim_set_var('python_host_prog', '/usr/bin/python2')
 vim.api.nvim_set_var('python3_host_prog', '/usr/bin/python3')
-vim.api.nvim_set_var('node_host_prog', '/usr/local/bin/neovim-node-host')
+vim.api.nvim_set_var('node_host_prog', get_node_neovim_path())
 
 vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
 
