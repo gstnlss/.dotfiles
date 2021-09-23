@@ -1,9 +1,10 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+return require('packer').startup(
+  function(use)
     use 'wbthomason/packer.nvim'
     use 'airblade/vim-gitgutter'
-    use 'morhetz/gruvbox'
+    use 'Mofiqul/dracula.nvim'
     use 'folke/lsp-colors.nvim'
     use 'preservim/nerdtree'
     use 'vim-airline/vim-airline'
@@ -16,14 +17,12 @@ return require('packer').startup(function(use)
     use 'ryanoasis/vim-devicons'
     use 'neovim/nvim-lspconfig'
     use {
-        'nvim-telescope/telescope.nvim',
-        requires = {
-            { 'nvim-lua/popup.nvim' },
-            { 'nvim-lua/plenary.nvim' },
-        }
+      'nvim-telescope/telescope.nvim',
+      requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
     }
     use 'hrsh7th/nvim-compe'
     use 'hrsh7th/vim-vsnip'
     use 'rafamadriz/friendly-snippets'
     use 'f-person/git-blame.nvim'
-end)
+  end
+)
