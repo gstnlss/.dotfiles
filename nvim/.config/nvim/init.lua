@@ -23,7 +23,7 @@ vim.api.nvim_set_var('node_host_prog', get_node_neovim_path())
 vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
 
 -- " vim-airline
-vim.api.nvim_set_var('airline_theme', 'dracula')
+vim.api.nvim_set_var('airline_theme', 'base16_dracula')
 vim.api.nvim_set_var('airline_powerline_fonts', 1)
 
 -- custom/mine
