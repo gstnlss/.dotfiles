@@ -2,7 +2,7 @@
 
 pushd $HOME/.dotfiles
 
-STOW_FOLDERS=(nvim zsh tmux misc x luaformatter alacritty)
+STOW_FOLDERS=(nvim tmux luaformatter)
 
 for folder in $STOW_FOLDERS; do
     echo $folder

@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-export GTK_THEME='Arc:dark'
-
-source $HOME/.zshenv
