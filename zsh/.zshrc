@@ -105,5 +105,7 @@ source $ZSH/oh-my-zsh.sh
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 
+export EDITOR=nvim
+
 # Init nvm (manjaro)
 source /usr/share/nvm/init-nvm.sh
