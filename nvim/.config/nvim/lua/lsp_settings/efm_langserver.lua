@@ -32,7 +32,7 @@ lspconfig.efm.setup(
       'typescriptreact'
     },
     settings = {
-      rootMarkers = { '.git/' },
+      rootMarkers = { 'package.json', '.git/' },
       languages = {
         lua = { { formatCommand = 'lua-format -i', formatStdin = true } },
         javascript = { prettier, eslint_d },
