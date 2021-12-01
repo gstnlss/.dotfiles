@@ -11,10 +11,7 @@ vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
 
 -- " vim-airline
 vim.api.nvim_set_var('airline_theme', 'base16_dracula')
-
--- custom/mine
-vim.api.nvim_set_keymap('n', '<Leader>ss', ':w<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>sa', ':wa<CR>', { noremap = true })
+vim.api.nvim_set_var('airline#extensions#tabline#enabled', 1);
 
 -- TODO: move this to it's own file
 require'compe'.setup {
