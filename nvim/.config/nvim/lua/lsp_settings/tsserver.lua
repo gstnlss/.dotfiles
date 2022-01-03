@@ -9,5 +9,10 @@ end
 
 lspconfig.tsserver.setup({
     on_attach = tsserver_on_attach,
-    capabilities = capabilities
+    capabilities = capabilities,
+    init_options = {
+      preferences = {
+        disableSuggestions = true
+      }
+    }
 })
