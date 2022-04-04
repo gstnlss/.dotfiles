@@ -1,19 +1,45 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp_settings.utils').on_attach
 
-local eslint_d = {
+local eslint = {
   lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
   lintIgnoreExitCode = true,
   lintStdin = true,
   lintFormats = { '%f(%l,%c): %tarning %m', '%f(%l,%c): %rror %m' },
-  formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}',
-  formatStdin = true
+  formatCommand = 'eslint_d --stdin --fix-to-stdout --stdin-filename ${INPUT}',
+  formatStdin = true,
+  rootMarkers  = {
+    '.eslintrc',
+    '.eslintrc.js',
+    '.eslintrc.json',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    'package.json'
+  }
 }
 
 local prettier = {
-  formatCommand = 'prettier --stdin --stdin-filepath ${INPUT}',
-  formatStdin = true
+  formatCommand = 'prettier --stdin-filepath ${INPUT}',
+  formatStdin = true,
+  rootMarkers  = {
+    '.prettierrc',
+    '.prettierrc.json',
+    '.prettierrc.yml',
+    '.prettierrc.yaml',
+    '.prettierrc.json5',
+    '.prettierrc.js',
+    '.prettierrc.cjs',
+    'prettier.config.js',
+    'prettier.config.cjs',
+    'prettier.toml',
+  }
 }
+
+local lua_format = { formatCommand = 'lua-format -i', formatStdin = true }
+
+local eslint_prettier_config = { prettier, eslint }
+
+local root_markers = { '.git/' }
 
 lspconfig.efm.setup(
   {
@@ -31,16 +57,17 @@ lspconfig.efm.setup(
       'typescript.tsx',
       'typescriptreact'
     },
+    root_dir = lspconfig.util.root_pattern(unpack(root_markers)),
     settings = {
-      rootMarkers = { 'package.json', '.git/' },
+      rootMarkers = root_markers,
       languages = {
-        lua = { { formatCommand = 'lua-format -i', formatStdin = true } },
-        javascript = { prettier, eslint_d },
-        ['javascript.jsx'] = { prettier, eslint_d },
-        javascriptreact = { prettier, eslint_d },
-        typescript = { prettier, eslint_d },
-        ['typescript.tsx'] = { prettier, eslint_d },
-        typescriptreact = { prettier, eslint_d }
+        lua = { lua_format },
+        javascript = eslint_prettier_config,
+        ['javascript.jsx'] = eslint_prettier_config,
+        javascriptreact = eslint_prettier_config,
+        typescript = eslint_prettier_config,
+        ['typescript.tsx'] = eslint_prettier_config,
+        typescriptreact = eslint_prettier_config
       }
     }
   }
