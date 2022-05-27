@@ -1,10 +1,15 @@
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
+    if (bufnr) then
+      vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
   end
+
   -- Sets buffer option
   local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
+    if (bufnr) then
+      vim.api.nvim_buf_set_option(bufnr, ...)
+    end
   end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -41,7 +46,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', options)
   buf_set_keymap(
     'n', '<Leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-      options
+    options
   )
   buf_set_keymap(
     'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options

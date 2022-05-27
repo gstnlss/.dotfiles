@@ -14,7 +14,7 @@ vim.api.nvim_set_var('airline_theme', 'base16_dracula')
 vim.api.nvim_set_var('airline#extensions#tabline#enabled', 1);
 
 -- TODO: move this to it's own file
-require'compe'.setup {
+require 'compe'.setup {
   enabled = true,
   autocomplete = true,
   debug = false,
@@ -44,8 +44,8 @@ require'compe'.setup {
   }
 }
 
-require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
-require'telescope'.setup{
+require 'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+require 'telescope'.setup {
   defaults = {
     layout_strategy = 'vertical',
     layout_config = {
