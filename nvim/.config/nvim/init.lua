@@ -10,7 +10,7 @@ vim.api.nvim_set_var('node_host_prog', '/usr/bin/neovim-node-host')
 vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
 
 -- " vim-airline
-vim.api.nvim_set_var('airline_theme', 'base16_dracula')
+vim.api.nvim_set_var('airline_theme', 'gruvbox')
 vim.api.nvim_set_var('airline#extensions#tabline#enabled', 1);
 
 -- TODO: move this to it's own file

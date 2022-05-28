@@ -21,7 +21,8 @@ vim.wo.signcolumn = 'yes'
 
 -- Color scheme (order matters)
 vim.o.termguicolors = true
-vim.cmd('colorscheme dracula')
+vim.g.gruvbox_contrast_dark = "hard"
+vim.cmd('colorscheme gruvbox')
 
 -- Always keep 10 lines above/below the cursor visible
 vim.o.scrolloff = 10

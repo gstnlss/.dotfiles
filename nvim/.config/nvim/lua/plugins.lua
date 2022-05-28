@@ -4,7 +4,7 @@ return require('packer').startup(
   function(use)
     use 'wbthomason/packer.nvim'
     use 'airblade/vim-gitgutter'
-    use 'Mofiqul/dracula.nvim'
+    use 'morhetz/gruvbox'
     use 'folke/lsp-colors.nvim'
     use 'preservim/nerdtree'
     use 'vim-airline/vim-airline'
