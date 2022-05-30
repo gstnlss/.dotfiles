@@ -24,5 +24,6 @@ return require('packer').startup(
     use 'hrsh7th/vim-vsnip'
     use 'rafamadriz/friendly-snippets'
     use 'f-person/git-blame.nvim'
+    use { 'kkoomen/vim-doge', run = ':call doge#install()' }
   end
 )
