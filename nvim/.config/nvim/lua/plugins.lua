@@ -20,10 +20,16 @@ return require('packer').startup(
       'nvim-telescope/telescope.nvim',
       requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
     }
-    use 'hrsh7th/nvim-compe'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
     use 'rafamadriz/friendly-snippets'
     use 'f-person/git-blame.nvim'
     use { 'kkoomen/vim-doge', run = ':call doge#install()' }
+
+    use 'windwp/nvim-autopairs'
   end
 )
