@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp_settings.utils').on_attach
+local capabilities = require('lsp_settings.utils').capabilities
 
 local eslint = {
   lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
@@ -8,7 +9,7 @@ local eslint = {
   lintFormats = { '%f(%l,%c): %tarning %m', '%f(%l,%c): %rror %m' },
   formatCommand = 'eslint_d --stdin --fix-to-stdout --stdin-filename ${INPUT}',
   formatStdin = true,
-  rootMarkers  = {
+  rootMarkers = {
     '.eslintrc',
     '.eslintrc.js',
     '.eslintrc.json',
@@ -21,7 +22,7 @@ local eslint = {
 local prettier = {
   formatCommand = 'prettier --stdin-filepath ${INPUT}',
   formatStdin = true,
-  rootMarkers  = {
+  rootMarkers = {
     '.prettierrc',
     '.prettierrc.json',
     '.prettierrc.yml',
@@ -31,7 +32,7 @@ local prettier = {
     '.prettierrc.cjs',
     'prettier.config.js',
     'prettier.config.cjs',
-    'prettier.toml',
+    'prettier.toml'
   }
 }
 
@@ -48,6 +49,7 @@ lspconfig.efm.setup(
       on_attach(client)
       client.resolved_capabilities.document_formatting = true
     end,
+    capabilities = capabilities,
     filetypes = {
       'lua',
       'javascript',

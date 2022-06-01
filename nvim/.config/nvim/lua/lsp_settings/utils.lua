@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
   local options = { noremap = true, silent = true }
 
   buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', options)
-  buf_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', options)
+  buf_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', options)
   buf_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', options)
   buf_set_keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', options)
   buf_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', options)
@@ -26,10 +26,6 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', options)
   buf_set_keymap(
     'n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', options
-  )
-  buf_set_keymap(
-    'n', '<Leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-    options
   )
   buf_set_keymap(
     'n', '<Leader>d',
@@ -47,9 +43,33 @@ local on_attach = function(client, bufnr)
     options
   )
   buf_set_keymap(
-    'n', '<Leader>c', '<cmd>lua vim.lsp.buf.formatting()<CR>', options
+    'n', '<Leader>gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', options
   )
   buf_set_keymap('n', '<Leader>t', ':TroubleToggle<CR>', options)
+
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
+    vim.api.nvim_clear_autocmds {
+      buffer = bufnr,
+      group = 'lsp_document_highlight'
+    }
+    vim.api.nvim_create_autocmd(
+      'CursorHold', {
+      callback = vim.lsp.buf.document_highlight,
+      buffer = bufnr,
+      group = 'lsp_document_highlight',
+      desc = 'Document Highlight'
+    }
+    )
+    vim.api.nvim_create_autocmd(
+      'CursorMoved', {
+      callback = vim.lsp.buf.clear_references,
+      buffer = bufnr,
+      group = 'lsp_document_highlight',
+      desc = 'Clear All the References'
+    }
+    )
+  end
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(

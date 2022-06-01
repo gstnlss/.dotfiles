@@ -14,7 +14,6 @@ return require('packer').startup(
     use 'tpope/vim-commentary'
     use 'Xuyuanp/nerdtree-git-plugin'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'ryanoasis/vim-devicons'
     use 'neovim/nvim-lspconfig'
     use {
       'nvim-telescope/telescope.nvim',
@@ -32,9 +31,9 @@ return require('packer').startup(
     use 'windwp/nvim-autopairs'
     use {
       'folke/trouble.nvim',
-      requires = "kyazdani42/nvim-web-devicons",
+      requires = 'kyazdani42/nvim-web-devicons',
       config = function()
-        require("trouble").setup {}
+        require('trouble').setup {}
       end
     }
   end
