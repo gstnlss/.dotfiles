@@ -21,7 +21,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Color scheme (order matters)
 vim.o.termguicolors = true
-vim.g.gruvbox_contrast_dark = "hard"
+vim.g.gruvbox_contrast_dark = 'hard'
 vim.cmd('colorscheme gruvbox')
 
 -- Always keep 10 lines above/below the cursor visible
@@ -51,6 +51,7 @@ vim.o.swapfile = false
 
 -- Disable completion messages
 vim.cmd [[set shortmess+=c]]
+vim.cmd [[set clipboard+=unnamedplus]]
 
 -- Use popup menu always, do not select match in menu, do not insert text until selected
 -- vim.o.completeopt = 'menuone,noselect,noinsert'
