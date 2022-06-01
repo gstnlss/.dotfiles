@@ -29,7 +29,13 @@ return require('packer').startup(
     use 'rafamadriz/friendly-snippets'
     use 'f-person/git-blame.nvim'
     use { 'kkoomen/vim-doge', run = ':call doge#install()' }
-
     use 'windwp/nvim-autopairs'
+    use {
+      'folke/trouble.nvim',
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {}
+      end
+    }
   end
 )
