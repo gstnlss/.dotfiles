@@ -59,7 +59,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap('n', '<Leader>gs', ':G<CR>', { noremap = true })
 
 vim.api.nvim_set_keymap(
-  'n', '<Leader>c', ':DogeGenerate<CR>', { noremap = true }
+  'n', '<Leader>m', ':DogeGenerate<CR>', { noremap = true }
 )
 
 return keymaps
