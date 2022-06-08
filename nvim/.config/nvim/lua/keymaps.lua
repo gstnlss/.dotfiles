@@ -29,7 +29,14 @@ vim.api.nvim_set_keymap(
   'n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true }
 )
 
-vim.api.nvim_set_keymap('n', '<Leader>x', ':bdelete<CR>', { noremap = true })
+keymaps.BClose = function()
+  vim.cmd('bprevious');
+  vim.cmd('bd#');
+end
+vim.api.nvim_set_keymap(
+  'n', '<Leader>x', ':lua require("keymaps").BClose()<CR>',
+  { noremap = true, silent = true }
+)
 
 -- NERDTree
 keymaps.NERDTreeToggleFind = function()
