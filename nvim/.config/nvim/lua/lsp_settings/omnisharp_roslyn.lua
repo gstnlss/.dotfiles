@@ -1,12 +1,18 @@
 local lspconfig = require('lspconfig')
-local on_attach = require('lsp_settings.utils').on_attach
-local capabilities = require('lsp_settings.utils').capabilities
+local lsp_settings_utils = require('lsp_settings.utils')
+local on_attach = lsp_settings_utils.on_attach
+local capabilities = lsp_settings_utils.capabilities
+
 local pid = vim.fn.getpid()
 
 local omnisharp_bin = '/usr/bin/omnisharp'
 
 lspconfig.omnisharp.setup {
   cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
-  on_attach = on_attach,
-  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach.lsp_keymaps(client, bufnr)
+    on_attach.autoformatter(client, bufnr)
+    on_attach.highlight(client, bufnr)
+  end,
+  capabilities = capabilities
 }

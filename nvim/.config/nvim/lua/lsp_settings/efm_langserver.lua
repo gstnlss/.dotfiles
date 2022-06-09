@@ -1,6 +1,7 @@
 local lspconfig = require('lspconfig')
-local on_attach = require('lsp_settings.utils').on_attach
-local capabilities = require('lsp_settings.utils').capabilities
+local lsp_settings_utils = require('lsp_settings.utils')
+local on_attach = lsp_settings_utils.on_attach
+local capabilities = lsp_settings_utils.capabilities
 
 local eslint = {
   lintCommand = 'eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}',
@@ -45,10 +46,7 @@ local root_markers = { '.git/' }
 lspconfig.efm.setup(
   {
     init_options = { documentFormatting = true },
-    on_attach = function(client)
-      on_attach(client)
-      client.resolved_capabilities.document_formatting = true
-    end,
+    on_attach = on_attach.autoformatter,
     capabilities = capabilities,
     filetypes = {
       'lua',

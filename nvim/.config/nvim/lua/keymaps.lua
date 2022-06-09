@@ -35,7 +35,7 @@ keymaps.BClose = function()
 end
 vim.api.nvim_set_keymap(
   'n', '<Leader>x', ':lua require("keymaps").BClose()<CR>',
-  { noremap = true, silent = true }
+    { noremap = true, silent = true }
 )
 
 -- NERDTree
@@ -48,7 +48,7 @@ keymaps.NERDTreeToggleFind = function()
 end
 vim.api.nvim_set_keymap(
   'n', '<Leader>e', ':lua require("keymaps").NERDTreeToggleFind()<CR>',
-  { noremap = true, silent = true }
+    { noremap = true, silent = true }
 )
 
 -- Files

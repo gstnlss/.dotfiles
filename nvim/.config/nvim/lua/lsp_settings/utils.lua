@@ -1,4 +1,6 @@
-local on_attach = function(client, bufnr)
+local on_attach = {}
+
+on_attach.lsp_keymaps = function(_, bufnr)
   local function buf_set_keymap(...)
     if (bufnr) then
       vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -16,6 +18,7 @@ local on_attach = function(client, bufnr)
 
   local options = { noremap = true, silent = true }
 
+  -- TODO: make this simpler and easier on the eyes, (use config table and loop to use buf_set_keymap)
   buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', options)
   buf_set_keymap('n', 'gr', ':Telescope lsp_references<CR>', options)
   buf_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', options)
@@ -29,47 +32,72 @@ local on_attach = function(client, bufnr)
   )
   buf_set_keymap(
     'n', '<Leader>d',
-    ':lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>',
-    options
+      ':lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>',
+      options
   )
   buf_set_keymap(
     'n', '[d',
-    ':lua vim.diagnostic.goto_prev({ float = { border = "single" }})<CR>',
-    options
+      ':lua vim.diagnostic.goto_prev({ float = { border = "single" }})<CR>',
+      options
   )
   buf_set_keymap(
     'n', ']d',
-    '<cmd>lua vim.diagnostic.goto_next({ float = { border = "single" }})<CR>',
-    options
+      '<cmd>lua vim.diagnostic.goto_next({ float = { border = "single" }})<CR>',
+      options
   )
   buf_set_keymap(
     'n', '<Leader>gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', options
   )
   buf_set_keymap('n', '<Leader>t', ':TroubleToggle<CR>', options)
+end
 
+local HIGHLIGHT_AUGROUP = 'MyLspDocumentHighlight'
+on_attach.highlight = function(client, bufnr)
   if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
-    vim.api.nvim_clear_autocmds {
-      buffer = bufnr,
-      group = 'lsp_document_highlight'
-    }
+    local augroup_id = vim.api.nvim_create_augroup(
+      HIGHLIGHT_AUGROUP, { clear = true }
+    )
     vim.api.nvim_create_autocmd(
       'CursorHold', {
-      callback = vim.lsp.buf.document_highlight,
-      buffer = bufnr,
-      group = 'lsp_document_highlight',
-      desc = 'Document Highlight'
-    }
+        callback = vim.lsp.buf.document_highlight,
+        buffer = bufnr,
+        group = augroup_id,
+        desc = 'Document Highlight'
+      }
     )
     vim.api.nvim_create_autocmd(
       'CursorMoved', {
-      callback = vim.lsp.buf.clear_references,
-      buffer = bufnr,
-      group = 'lsp_document_highlight',
-      desc = 'Clear All the References'
-    }
+        callback = vim.lsp.buf.clear_references,
+        buffer = bufnr,
+        group = augroup_id,
+        desc = 'Clear All the References'
+      }
     )
   end
+end
+
+local FORMATTING_AUGROUP = 'MyLspFormatting'
+local augroup_id = vim.api.nvim_create_augroup(
+  FORMATTING_AUGROUP, { clear = true }
+)
+on_attach.autoformatter = function(client, bufnr)
+  if client.supports_method('textDocument/formatting') then
+    -- vim.api.nvim_clear_autocmds({ group = FORMATTING_AUGROUP, buffer = bufnr })
+    vim.api.nvim_create_autocmd(
+      'BufWritePre', {
+        group = augroup_id,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.formatting_sync()
+        end
+      }
+    )
+    client.resolved_capabilities.document_formatting = true
+  end
+end
+
+on_attach.disable_formatting = function(client)
+  client.resolved_capabilities.document_formatting = false
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
