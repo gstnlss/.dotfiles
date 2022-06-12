@@ -21,7 +21,7 @@ local eslint = {
 }
 
 local prettier = {
-  formatCommand = 'prettier --stdin-filepath ${INPUT}',
+  formatCommand = 'prettierd --stdin-filepath ${INPUT}',
   formatStdin = true,
   rootMarkers = {
     '.prettierrc',
