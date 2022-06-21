@@ -21,14 +21,6 @@ vim.api.nvim_set_keymap(
   'n', '<C-l>', '<C-w>l', { noremap = true, silent = true }
 )
 
--- Buffer navigation
-vim.api.nvim_set_keymap(
-  'n', '<C-p>', ':bprevious<CR>', { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-  'n', '<C-n>', ':bnext<CR>', { noremap = true, silent = true }
-)
-
 keymaps.BClose = function()
   vim.cmd('bprevious');
   vim.cmd('bd#');

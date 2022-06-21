@@ -6,8 +6,6 @@ return require('packer').startup(
     use 'airblade/vim-gitgutter'
     use 'morhetz/gruvbox'
     use 'folke/lsp-colors.nvim'
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
@@ -31,7 +29,9 @@ return require('packer').startup(
     use 'hrsh7th/vim-vsnip'
     use 'rafamadriz/friendly-snippets'
     use 'f-person/git-blame.nvim'
+
     use { 'kkoomen/vim-doge', run = ':call doge#install()' }
+
     use 'windwp/nvim-autopairs'
     use {
       'folke/trouble.nvim',
@@ -48,6 +48,20 @@ return require('packer').startup(
         }
       end
 
+    }
+
+    use {
+      'akinsho/bufferline.nvim',
+      tag = 'v2.*',
+      requires = 'kyazdani42/nvim-web-devicons'
+    }
+
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+      config = function()
+        require('lualine').setup({})
+      end
     }
   end
 )
