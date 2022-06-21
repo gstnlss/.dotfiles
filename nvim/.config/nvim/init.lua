@@ -23,6 +23,7 @@ vim.api
   .nvim_set_var('node_host_prog', read_cmd_output('which neovim-node-host'))
 vim.api.nvim_set_var('loaded_perl_provider', 0)
 
+-- NERDTree
 vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
 
 -- " vim-airline

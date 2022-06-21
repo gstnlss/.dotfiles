@@ -46,7 +46,7 @@ on_attach.lsp_keymaps = function(_, bufnr)
       options
   )
   buf_set_keymap(
-    'n', '<Leader>gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', options
+    'n', '<Leader>gf', '<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>', options
   )
   buf_set_keymap('n', '<Leader>t', ':TroubleToggle<CR>', options)
 end
@@ -88,7 +88,7 @@ on_attach.autoformatter = function(client, bufnr)
         group = augroup_id,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.formatting_sync()
+          vim.lsp.buf.formatting_seq_sync()
         end
       }
     )
