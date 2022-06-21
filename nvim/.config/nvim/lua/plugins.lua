@@ -63,5 +63,7 @@ return require('packer').startup(
         require('lualine').setup({})
       end
     }
+
+    use 'rmagatti/auto-session'
   end
 )
