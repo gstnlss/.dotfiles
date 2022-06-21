@@ -23,9 +23,6 @@ vim.api
   .nvim_set_var('node_host_prog', read_cmd_output('which neovim-node-host'))
 vim.api.nvim_set_var('loaded_perl_provider', 0)
 
--- NERDTree
-vim.api.nvim_set_var('NERDTreeGitStatusUseNerdFonts', 1)
-
 -- " vim-airline
 vim.api.nvim_set_var('airline_theme', 'gruvbox')
 vim.api.nvim_set_var('airline#extensions#tabline#enabled', 1);
@@ -86,3 +83,5 @@ require'telescope'.setup {
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover, { border = 'rounded' }
 )
+
+require('plugin_config')

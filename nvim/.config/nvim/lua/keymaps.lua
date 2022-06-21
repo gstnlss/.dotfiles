@@ -38,19 +38,6 @@ vim.api.nvim_set_keymap(
     { noremap = true, silent = true }
 )
 
--- NERDTree
-keymaps.NERDTreeToggleFind = function()
-  if vim.bo.filetype == 'nerdtree' then
-    vim.cmd('NERDTreeToggle')
-  else
-    vim.cmd('NERDTreeFind')
-  end
-end
-vim.api.nvim_set_keymap(
-  'n', '<Leader>e', ':lua require("keymaps").NERDTreeToggleFind()<CR>',
-    { noremap = true, silent = true }
-)
-
 -- Files
 vim.api.nvim_set_keymap(
   'n', '<Leader>p', ':Telescope find_files<CR>', { noremap = true }
@@ -67,6 +54,12 @@ vim.api.nvim_set_keymap('n', '<Leader>gs', ':G<CR>', { noremap = true })
 
 vim.api.nvim_set_keymap(
   'n', '<Leader>m', ':DogeGenerate<CR>', { noremap = true }
+)
+
+-- Reload vimrc
+vim.api.nvim_set_keymap(
+  'n', '<Leader><Leader>', ':source $MYVIMRC<CR>',
+    { noremap = true, silent = true }
 )
 
 return keymaps

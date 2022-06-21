@@ -6,13 +6,17 @@ return require('packer').startup(
     use 'airblade/vim-gitgutter'
     use 'morhetz/gruvbox'
     use 'folke/lsp-colors.nvim'
-    use 'preservim/nerdtree'
     use 'vim-airline/vim-airline'
     use 'vim-airline/vim-airline-themes'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
-    use 'Xuyuanp/nerdtree-git-plugin'
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons' -- optional, for file icons
+      }
+    }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'neovim/nvim-lspconfig'
     use {
