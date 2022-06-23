@@ -33,3 +33,5 @@ export EDITOR=nvim
 
 # Init nvm (manjaro)
 source /usr/share/nvm/init-nvm.sh
+
+task
