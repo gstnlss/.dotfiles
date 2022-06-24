@@ -33,22 +33,6 @@ return require('packer').startup(
     use { 'kkoomen/vim-doge', run = ':call doge#install()' }
 
     use 'windwp/nvim-autopairs'
-    use {
-      'folke/trouble.nvim',
-      requires = 'kyazdani42/nvim-web-devicons',
-      config = function()
-        require('trouble').setup {}
-      end
-    }
-    use {
-      'vimwiki/vimwiki',
-      config = function()
-        vim.g.vimwiki_list = {
-          { path = '~/Documents/vimwiki', syntax = 'markdown', ext = '.md' }
-        }
-      end
-
-    }
 
     use {
       'akinsho/bufferline.nvim',
