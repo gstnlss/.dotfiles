@@ -49,5 +49,6 @@ return require('packer').startup(
     }
 
     use 'rmagatti/auto-session'
+    use 'mickael-menu/zk-nvim'
   end
 )

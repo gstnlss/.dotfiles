@@ -83,3 +83,4 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 require('plugin_config.nvim_tree')
 require('plugin_config.bufferline')
 require('plugin_config.auto_session')
+require('plugin_config.zk_nvim')
