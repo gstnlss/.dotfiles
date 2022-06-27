@@ -10,7 +10,7 @@ ZSH_THEME="robbyrussell"
 DISABLE_UPDATE_PROMPT="true"
 
 # Enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
