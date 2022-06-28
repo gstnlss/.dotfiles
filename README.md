@@ -9,7 +9,7 @@ Just my personal `dotfiles`, using `stow`.
 - tmux: terminal multiplexer
 
 ## Install
-`stow -S nvim zsh luaformatter alacritty tmux`
+`stow -S nvim zsh luaformatter alacritty tmux taskwarrior`
 
 ## Uninstall
-`stow -D nvim zsh luaformatter alacritty tmux`
+`stow -D nvim zsh luaformatter alacritty tmux taskwarrior`

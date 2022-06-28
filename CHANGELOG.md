@@ -1,5 +1,8 @@
 # Changelog
 
+## 2022-06-28
+- Added `taskwarrior`
+
 ## 2022-06-26
 - Modifications to run properly under Windows WSL
 
