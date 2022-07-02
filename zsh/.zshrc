@@ -31,12 +31,8 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 # Add local scripts to path
 export PATH="$PATH:$HOME/.local/bin"
-
 export EDITOR=nvim
 
-if [[ -z "${WSL_DISTRO_NAME}" ]]; then
-    # Init nvm (manjaro)
-    source /usr/share/nvm/init-nvm.sh
+source /usr/share/nvm/init-nvm.sh
 
-    task
-fi
+task
