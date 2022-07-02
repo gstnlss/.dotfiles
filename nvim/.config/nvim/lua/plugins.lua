@@ -1,4 +1,19 @@
+-- Automatically bootstrap packer when first opening neovim in a new box
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	_G.packer_bootsrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+end
+
 vim.cmd [[packadd packer.nvim]]
+
+-- Automatically sync packer when this file is modified
+local PACKER_CONFIG_AUGROUP = 'PackerUserConfig'
+local packer_augroup_id = vim.api.nvim_create_augroup(PACKER_CONFIG_AUGROUP, { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'plugins.lua',
+  command = 'source <afile> | PackerSync',
+  group = packer_augroup_id
+})
 
 return require('packer').startup(
   function(use)
@@ -50,5 +65,9 @@ return require('packer').startup(
 
     use 'rmagatti/auto-session'
     use 'mickael-menu/zk-nvim'
+
+		if _G.packer_bootsrap then
+			require('packer').sync()
+		end
   end
 )
