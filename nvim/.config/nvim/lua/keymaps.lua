@@ -30,17 +30,6 @@ vim.api.nvim_set_keymap(
     { noremap = true, silent = true }
 )
 
--- Files
-vim.api.nvim_set_keymap(
-  'n', '<Leader>p', ':Telescope find_files<CR>', { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>f', ':Telescope live_grep<CR>', { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n', '<Leader><tab>', ':Telescope buffers<CR>', { noremap = true }
-)
-
 -- Vim integration
 vim.api.nvim_set_keymap('n', '<Leader>gs', ':G<CR>', { noremap = true })
 
