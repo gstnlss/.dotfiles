@@ -7,3 +7,5 @@ taskd.credentials=gstnlss/agustin/19adeec3-b1b9-475a-8409-321d623ae2e1
 taskd.certificate=~/.task/agustin.cert.pem
 taskd.key=~/.task/agustin.key.pem
 taskd.ca=~/.task/ca.cert.pem
+
+recurrence=off
