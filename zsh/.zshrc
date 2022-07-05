@@ -35,4 +35,8 @@ export EDITOR=nvim
 
 source /usr/share/nvm/init-nvm.sh
 
+if [[ -n $SSH_CONNECTION ]]; then
+    PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
+fi
+
 task
