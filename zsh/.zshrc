@@ -3,6 +3,10 @@ NVM_AUTOLOAD=1
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.local/share/oh-my-zsh"
 
+if [[ ! -d "$ZSH" ]]; then
+  CHSH=no RUNZSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
@@ -25,6 +29,9 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v
 
+alias vi=nvim
+alias vim=nvim
+
 # Add gems to path
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
@@ -33,10 +40,9 @@ export PATH="$PATH:$GEM_HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export EDITOR=nvim
 
-source /usr/share/nvm/init-nvm.sh
+NVM_INIT_PATH=/usr/share/nvm/init-nvm.sh
+[[ -f "$NVM_INIT_PATH" ]] && source $NVM_INIT_PATH
 
-if [[ -n $SSH_CONNECTION ]]; then
-    PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
-fi
+[[ -n "$SSH_CONNECTION" ]] && PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
 
-task
+[[ -x "$(command -v task)" ]] && task
