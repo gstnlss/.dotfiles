@@ -33,8 +33,10 @@ alias vi=nvim
 alias vim=nvim
 
 # Add gems to path
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
+if [[ -x "$(command -v ruby)" ]]; then
+  export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+  export PATH="$PATH:$GEM_HOME/bin"
+fi
 
 # Add local scripts to path
 export PATH="$PATH:$HOME/.local/bin"
