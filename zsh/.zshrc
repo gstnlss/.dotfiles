@@ -29,8 +29,11 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v
 
-alias vi=nvim
-alias vim=nvim
+# Useful aliases if neovim is installed
+if [[ -x "$(command -v nvim)" ]]; then
+  alias vi=nvim
+  alias vim=nvim
+fi
 
 # Add gems to path
 if [[ -x "$(command -v ruby)" ]]; then
