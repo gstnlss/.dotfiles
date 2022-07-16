@@ -47,4 +47,4 @@ NVM_INIT_PATH=/usr/share/nvm/init-nvm.sh
 
 [[ -n "$SSH_CONNECTION" ]] && PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
 
-[[ -x "$(command -v task)" ]] && task
+[[ -x "$(command -v task)" ]] && task limit:10
