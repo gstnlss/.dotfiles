@@ -29,22 +29,32 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v
 
-# Useful aliases if neovim is installed
+# Neovim
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi=nvim
   alias vim=nvim
 fi
 
-# Add gems to path
+# Ruby
 if [[ -x "$(command -v ruby)" ]]; then
   export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
   export PATH="$PATH:$GEM_HOME/bin"
 fi
 
+# Perl
+PERL5_DIR="${HOME}/.perl5"
+PATH="${PERL5_DIR}/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="${PERL5_DIR}/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="${PERL5_DIR}${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"${PERL5_DIR}\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=${PERL5_DIR}"; export PERL_MM_OPT;
+
 # Add local scripts to path
 export PATH="$PATH:$HOME/.local/bin"
+
 export EDITOR=nvim
 
+# Node Version Manager
 NVM_INIT_PATH=/usr/share/nvm/init-nvm.sh
 [[ -f "$NVM_INIT_PATH" ]] && source $NVM_INIT_PATH
 
