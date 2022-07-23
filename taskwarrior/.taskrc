@@ -8,4 +8,10 @@ taskd.certificate=~/.task/agustin.cert.pem
 taskd.key=~/.task/agustin.key.pem
 taskd.ca=~/.task/ca.cert.pem
 
+report.work.description="Only tasks in work project"
+report.work.columns=id,modified.age,tags,due.relative,description,urgency
+report.work.labels=ID,Age,Tags,Due,Description,Urgency
+report.work.sort=urgency-,id-
+report.work.filter=status:pending and project:work
+
 recurrence=off
