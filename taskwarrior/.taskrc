@@ -1,9 +1,9 @@
 news.version=2.6.0
 
-data.location=/home/agustin/.task
+data.location=/home/agustin/.local/share/taskwarrior
 
-taskd.server=task.gstnlss.xyz:53589
-taskd.credentials=gstnlss/agustin/19adeec3-b1b9-475a-8409-321d623ae2e1
+taskd.server=taskd.gstnlss.xyz:53589
+taskd.credentials=gstnlss/agustin/78e231ac-1972-447b-ba69-21848af4f0c3
 taskd.certificate=~/.task/agustin.cert.pem
 taskd.key=~/.task/agustin.key.pem
 taskd.ca=~/.task/ca.cert.pem
