@@ -9,7 +9,7 @@ do
 done
 
 if (($n > 0)); then
-    task sync >> ~/.task/sync_hook.log
+    task sync >> ~/.local/share/taskwarrior/sync_hook.log
 fi
 
 exit 0

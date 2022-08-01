@@ -4,9 +4,9 @@ data.location=/home/agustin/.local/share/taskwarrior
 
 taskd.server=taskd.gstnlss.xyz:53589
 taskd.credentials=gstnlss/agustin/78e231ac-1972-447b-ba69-21848af4f0c3
-taskd.certificate=~/.task/agustin.cert.pem
-taskd.key=~/.task/agustin.key.pem
-taskd.ca=~/.task/ca.cert.pem
+taskd.certificate=~/.local/share/taskwarrior/agustin.cert.pem
+taskd.key=~/.local/share/taskwarrior/agustin.key.pem
+taskd.ca=~/.local/share/taskwarrior/ca.cert.pem
 
 report.work.description="Only tasks in work project"
 report.work.columns=id,modified.age,tags,due.relative,description,urgency
