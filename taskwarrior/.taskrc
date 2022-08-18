@@ -8,22 +8,14 @@ taskd.certificate=~/.local/share/taskwarrior/agustin.cert.pem
 taskd.key=~/.local/share/taskwarrior/agustin.key.pem
 taskd.ca=~/.local/share/taskwarrior/ca.cert.pem
 
-report.nowork.description=Same as next report but filtering work project
-report.nowork.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description,urgency
-report.nowork.filter=status:pending -WAITING limit:page project.not:work
-report.nowork.labels=ID,Active,Age,Deps,P,Project,Tag,Recur,S,Due,Until,Description,Urg
-report.nowork.sort=urgency-
-
-report.work.description=Only tasks in work project
-report.work.columns=id,modified.age,tags,due.relative,description,urgency
-report.work.labels=ID,Age,Tags,Due,Description,Urgency
-report.work.sort=urgency-,id-
-report.work.filter=status:pending and project:work
-
 report.standup.description=Quick reference for work stand up
 report.standup.columns=id,uuid.short,modified.age,tags,modified,end,description,urgency
 report.standup.labels=ID,UUID,Age,Tags,Modified,Completed,Description,Urgency
 report.standup.sort=end+,modified+,id-
 report.standup.filter=project:work and (modified:today or modified:yesterday or end:today or end:yesterday) and (+bug or +story)
+
+context.work.read=pro:work
+context.work.write=pro:work
+context.home.read=pro.not:work
 
 recurrence=off
