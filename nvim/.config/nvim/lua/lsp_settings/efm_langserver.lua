@@ -37,7 +37,7 @@ local prettier = {
   }
 }
 
-local lua_format = { formatCommand = 'lua-format -i', formatStdin = true }
+-- local lua_format = { formatCommand = 'lua-format -i', formatStdin = true }
 
 local eslint_prettier_config = { prettier, eslint }
 
@@ -49,7 +49,7 @@ lspconfig.efm.setup(
     on_attach = on_attach.autoformatter,
     capabilities = capabilities,
     filetypes = {
-      'lua',
+      -- 'lua',
       'javascript',
       'javascript.jsx',
       'javascriptreact',
@@ -61,7 +61,7 @@ lspconfig.efm.setup(
     settings = {
       rootMarkers = root_markers,
       languages = {
-        lua = { lua_format },
+        -- lua = { lua_format },
         javascript = eslint_prettier_config,
         ['javascript.jsx'] = eslint_prettier_config,
         javascriptreact = eslint_prettier_config,

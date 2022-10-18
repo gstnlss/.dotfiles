@@ -8,7 +8,8 @@ lspconfig.tsserver.setup(
     on_attach = function(client, bufnr)
       on_attach.lsp_keymaps(client, bufnr)
       on_attach.highlight(client, bufnr)
-      on_attach.disable_formatting(client)
+      on_attach.autoformatter(client, bufnr)
+      -- on_attach.disable_formatting(client)
     end,
     capabilities = capabilities,
     init_options = { preferences = { disableSuggestions = true } },

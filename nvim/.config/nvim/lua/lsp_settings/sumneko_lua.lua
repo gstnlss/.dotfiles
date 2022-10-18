@@ -5,6 +5,7 @@ local capabilities = lsp_settings_utils.capabilities
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')
+
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
@@ -14,7 +15,7 @@ lspconfig.sumneko_lua.setup(
     on_attach = function(client, bufnr)
       on_attach.lsp_keymaps(client, bufnr)
       on_attach.highlight(client, bufnr)
-      on_attach.disable_formatting(client)
+      on_attach.autoformatter(client, bufnr)
     end,
     capabilities = capabilities,
     settings = {

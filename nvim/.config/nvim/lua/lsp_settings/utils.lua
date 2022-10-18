@@ -45,9 +45,7 @@ on_attach.lsp_keymaps = function(_, bufnr)
       '<cmd>lua vim.diagnostic.goto_next({ float = { border = "single" }})<CR>',
       options
   )
-  buf_set_keymap(
-    'n', '<Leader>gf', '<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>', options
-  )
+  buf_set_keymap('n', '<Leader>gf', '<cmd>lua vim.lsp.buf.format()<CR>', options)
   buf_set_keymap('n', '<Leader>t', ':TroubleToggle<CR>', options)
 end
 
@@ -88,16 +86,16 @@ on_attach.autoformatter = function(client, bufnr)
         group = augroup_id,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.formatting_seq_sync()
+          vim.lsp.buf.format()
         end
       }
     )
-    client.resolved_capabilities.document_formatting = true
+    client.server_capabilities.documentFormattingProvider = true
   end
 end
 
 on_attach.disable_formatting = function(client)
-  client.resolved_capabilities.document_formatting = false
+  client.server_capabilities.documentFormattingProvider = false
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
