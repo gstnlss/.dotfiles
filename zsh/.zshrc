@@ -54,10 +54,17 @@ export PATH="$PATH:$HOME/.local/bin"
 
 export EDITOR=nvim
 
+export NVM_DIR="$HOME/.nvm"
+
 # Node Version Manager
 NVM_INIT_PATH=/usr/share/nvm/init-nvm.sh
 [[ -f "$NVM_INIT_PATH" ]] && source $NVM_INIT_PATH
 
+# MacOS
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 [[ -n "$SSH_CONNECTION" ]] && PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
 
 [[ -x "$(command -v task)" ]] && task limit:10
+
