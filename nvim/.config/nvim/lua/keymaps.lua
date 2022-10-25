@@ -22,8 +22,22 @@ vim.api.nvim_set_keymap(
 )
 
 keymaps.BClose = function()
-  vim.cmd('bprevious');
-  vim.cmd('bd#');
+  local buffer_count = 0;
+
+  for buffer = 1, vim.fn.bufnr('$') do
+    if vim.fn.buflisted(buffer) == 1 then
+      buffer_count = buffer_count + 1;
+    end
+  end
+
+  if buffer_count > 1 then
+    local current_buffer = vim.fn.bufnr('%')
+    vim.cmd('bprevious')
+    vim.cmd('bd#')
+    print('[Info] Buffer ' .. current_buffer .. ' deleted.')
+  else
+    print('[Info] Last buffer. Delete aborted.')
+  end
 end
 vim.api.nvim_set_keymap(
   'n', '<Leader>x', ':lua require("keymaps").BClose()<CR>',

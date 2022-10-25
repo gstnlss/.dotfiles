@@ -5,10 +5,8 @@ local capabilities = lsp_settings_utils.capabilities
 
 local pid = vim.fn.getpid()
 
-local omnisharp_bin = '/usr/bin/omnisharp'
-
 lspconfig.omnisharp.setup {
-  cmd = { omnisharp_bin, '--languageserver', '--hostPID', tostring(pid) },
+  cmd = { 'omnisharp', '--languageserver', '--hostPID', tostring(pid) },
   on_attach = function(client, bufnr)
     on_attach.lsp_keymaps(client, bufnr)
     on_attach.autoformatter(client, bufnr)

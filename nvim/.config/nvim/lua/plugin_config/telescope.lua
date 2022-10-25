@@ -1,5 +1,11 @@
 require'telescope'.setup {
   defaults = {
+    file_ignore_patterns = {
+      'node_modules',
+      'package%-lock.json',
+      '.git/',
+      'package.json'
+    },
     layout_strategy = 'vertical',
     layout_config = {
       height = 0.95,
@@ -19,10 +25,7 @@ require'telescope'.setup {
       '-u' -- thats the new thing
     }
   },
-  pickers = {
-    find_files = { hidden = true, file_ignore_patterns = { '.git/' } },
-    live_grep = { hidden = true, file_ignore_patters = { '.git/' } }
-  }
+  pickers = { find_files = { hidden = true }, live_grep = { hidden = true } }
 }
 
 local keymap_options = { noremap = true, silent = true }
