@@ -29,17 +29,19 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v
 
-# Neovim
+## Neovim Alias ##
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi=nvim
   alias vim=nvim
 fi
+## Neovim Alias ##
 
-# Ruby
+## Ruby ##
 if [[ -x "$(command -v ruby)" ]]; then
   export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
   export PATH="$PATH:$GEM_HOME/bin"
 fi
+## Ruby ##
 
 # Perl
 PERL5_DIR="${HOME}/.perl5"
@@ -52,19 +54,24 @@ PERL_MM_OPT="INSTALL_BASE=${PERL5_DIR}"; export PERL_MM_OPT;
 # Add local scripts to path
 export PATH="$PATH:$HOME/.local/bin"
 
+
+## Default Apps ##
 export EDITOR=nvim
+export BROWSER=firefox
+## Default Apps ##
 
-export NVM_DIR="$HOME/.nvm"
+## Node Version Manager ##
+export NVM_DIR="$HOME/.local/share/nvm"
 
-# Node Version Manager
-NVM_INIT_PATH=/usr/share/nvm/init-nvm.sh
-[[ -f "$NVM_INIT_PATH" ]] && source $NVM_INIT_PATH
+# MacOS #
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-# MacOS
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Debian (homebrew) #
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
+## Node Version Manager ##
 
 [[ -n "$SSH_CONNECTION" ]] && PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
 
 [[ -x "$(command -v task)" ]] && task limit:10
-
