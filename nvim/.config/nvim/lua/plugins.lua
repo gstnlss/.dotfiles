@@ -87,7 +87,7 @@ return require('packer').startup(
     }
 
     use 'rmagatti/auto-session'
-    use 'mickael-menu/zk-nvim'
+    use 'epwalsh/obsidian.nvim'
 
     if _G.packer_bootsrap then
       require('packer').sync()
