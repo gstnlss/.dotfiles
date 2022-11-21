@@ -18,7 +18,7 @@ require'telescope'.setup {
     pickers = {find_files = {hidden = true}, live_grep = {hidden = true}}
 }
 
-local keymap_options = {noremap = true, silent = true}
+local keymap_options = {noremap = true}
 
 vim.keymap.set('n', '<Leader>p', ':Telescope find_files<CR>', keymap_options)
 vim.keymap.set('n', '<Leader>f', ':Telescope live_grep<CR>', keymap_options)
