@@ -56,3 +56,6 @@ vim.cmd [[set clipboard+=unnamedplus]]
 -- Use popup menu always, do not select match in menu, do not insert text until selected
 -- vim.o.completeopt = 'menuone,noselect,noinsert'
 vim.o.completeopt = 'menu,menuone,noselect'
+
+vim.o.mouse = nil
+vim.o.ttymouse = nil
