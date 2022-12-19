@@ -9,22 +9,20 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-lspconfig.sumneko_lua.setup(
-  {
-    cmd = { 'lua-language-server', '-E' },
+lspconfig.sumneko_lua.setup({
+    cmd = {'lua-language-server', '-E'},
     on_attach = function(client, bufnr)
-      on_attach.lsp_keymaps(client, bufnr)
-      on_attach.highlight(client, bufnr)
-      on_attach.autoformatter(client, bufnr)
+        on_attach.lsp_keymaps(client, bufnr)
+        on_attach.highlight(client, bufnr)
+        on_attach.autoformatter(client, bufnr)
     end,
     capabilities = capabilities,
     settings = {
-      Lua = {
-        runtime = { version = 'LuaJIT', path = runtime_path },
-        diagnostics = { globals = { 'vim' } },
-        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-        telemetry = { enable = false }
-      }
+        Lua = {
+            runtime = {version = 'LuaJIT', path = runtime_path},
+            diagnostics = {globals = {'vim'}},
+            workspace = {library = vim.api.nvim_get_runtime_file('', true)},
+            telemetry = {enable = false}
+        }
     }
-  }
-)
+})
