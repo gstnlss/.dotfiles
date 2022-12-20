@@ -1,4 +1,4 @@
-NVM_AUTOLOAD=1
+zstyle ':omz:plugins:nvm' autoload yes
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.local/share/oh-my-zsh"
