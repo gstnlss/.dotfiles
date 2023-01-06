@@ -1,6 +1,1 @@
-require('plugins')
-require('options')
-require('providers')
-require('lsp_settings')
-require('keymaps')
-require('plugin_config')
+require('gstnlss')
