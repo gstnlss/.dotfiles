@@ -13,4 +13,3 @@ spaces_inside_table_braces: true
 align_parameter: false
 align_args: false
 align_table_field: false
-
