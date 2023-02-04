@@ -74,7 +74,7 @@ lsp.on_attach(
         )
         vim.keymap.set(
             'n', '<leader>ca', function()
-                vim.lsp.buf.code_action()
+                vim.cmd [[CodeActionMenu]]
             end, opts
         )
         vim.keymap.set(
