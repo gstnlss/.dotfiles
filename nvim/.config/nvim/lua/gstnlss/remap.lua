@@ -10,7 +10,11 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 vim.keymap.set('x', '<leader>p', '"_dP')
 
-vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format() end)
+vim.keymap.set(
+    'n', '<leader>f', function()
+    vim.lsp.buf.format()
+end
+)
 
 -- Quickfix list movement
 vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
@@ -19,11 +23,14 @@ vim.keymap.set('n', '<leader>j', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lprev<CR>zz')
 
 -- Search & Replace in current file
-vim.keymap.set('n', '<leader>rp',
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+local search_and_replace_cmd =
+[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+vim.keymap.set('n', '<leader>rp', search_and_replace_cmd)
+vim.keymap.set('v', '<leader>rp', search_and_replace_cmd)
 
 -- Close current buffer
-vim.keymap.set('n', '<leader>x', function()
+vim.keymap.set(
+    'n', '<leader>x', function()
     local buffer_count = 0
     for buffer = 1, vim.fn.bufnr('$') do
         if vim.fn.buflisted(buffer) == 1 then
@@ -31,16 +38,20 @@ vim.keymap.set('n', '<leader>x', function()
         end
     end
 
-    local current_buffer = vim.fn.bufnr('%')
-    if buffer_count > 1 then
-        vim.cmd('bprevious')
-        vim.cmd('bd#')
-        print('[Info] Buffer ' .. current_buffer .. ' deleted.')
+    vim.cmd [[w]]
+    if buffer_count == 1 then
+        vim.cmd [[bd]]
     else
-        vim.cmd('bd%')
-        print('[Info] Buffer ' .. current_buffer .. ' deleted.')
+        vim.cmd [[bp]]
+        vim.cmd [[bd#]]
     end
-end)
+end
+)
 
 -- Quit vim even if splits are open
-vim.keymap.set('n', '<leader>q', ':qall<CR>')
+vim.keymap.set(
+    'n', '<leader>q', function()
+    vim.cmd [[wa]]
+    vim.cmd [[qall]]
+end
+)
