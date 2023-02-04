@@ -35,6 +35,39 @@ null_ls.setup(
     }
 )
 
+-- Fix for react type definition files showing on go to definition
+-- https://github.com/typescript-language-server/typescript-language-server/issues/216
+local function filter(arr, fn)
+    if type(arr) ~= 'table' then
+        return arr
+    end
+
+    local filtered = {}
+    for k, v in pairs(arr) do
+        if fn(v, k, arr) then
+            table.insert(filtered, v)
+        end
+    end
+
+    return filtered
+end
+
+local function filterReactDTS(value)
+    return string.match(value.filename, 'react/index.d.ts') == nil
+end
+
+local function on_list(options)
+    local items = options.items
+    if #items > 1 then
+        items = filter(items, filterReactDTS)
+    end
+
+    vim.fn.setqflist(
+        {}, ' ', { title = options.title, items = items, context = options.context }
+    )
+    vim.cmd('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
+end
+
 local format_on_save_group = vim.api.nvim_create_augroup(
     'FormatOnSave', { clear = true }
 )
@@ -44,7 +77,7 @@ lsp.on_attach(
 
         vim.keymap.set(
             'n', 'gd', function()
-                vim.lsp.buf.definition()
+                vim.lsp.buf.definition({ on_list = on_list })
             end, opts
         )
         vim.keymap.set(
