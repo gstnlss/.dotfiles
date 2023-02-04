@@ -38,7 +38,11 @@ vim.keymap.set(
         end
     end
 
-    vim.cmd [[w]]
+    local is_modifiable = vim.api.nvim_buf_get_option(0, 'modifiable')
+    if is_modifiable then
+        vim.cmd [[w]]
+    end
+
     if buffer_count == 1 then
         vim.cmd [[bd]]
     else
