@@ -10,11 +10,7 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 vim.keymap.set('x', '<leader>p', '"_dP')
 
-vim.keymap.set(
-    'n', '<leader>f', function()
-    vim.lsp.buf.format()
-end
-)
+vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format() end)
 
 -- Quickfix list movement
 vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
@@ -23,13 +19,11 @@ vim.keymap.set('n', '<leader>j', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lprev<CR>zz')
 
 -- Search & Replace in current file
-vim.keymap.set(
-    'n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
-)
+vim.keymap.set('n', '<leader>rp',
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Close current buffer
-vim.keymap.set(
-    'n', '<leader>x', function()
+vim.keymap.set('n', '<leader>x', function()
     local buffer_count = 0
     for buffer = 1, vim.fn.bufnr('$') do
         if vim.fn.buflisted(buffer) == 1 then
@@ -46,14 +40,7 @@ vim.keymap.set(
         vim.cmd('bd%')
         print('[Info] Buffer ' .. current_buffer .. ' deleted.')
     end
-end
-)
-
--- Split navigation shortcut
-vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true })
+end)
 
 -- Quit vim even if splits are open
 vim.keymap.set('n', '<leader>q', ':qall<CR>')
