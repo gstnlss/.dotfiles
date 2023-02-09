@@ -1,6 +1,6 @@
 news.version=2.6.0
 
-data.location=/home/agustin/.local/share/taskwarrior
+data.location=~/.local/share/taskwarrior
 
 taskd.server=taskd.gstnlss.xyz:53589
 taskd.credentials=gstnlss/agustin/78e231ac-1972-447b-ba69-21848af4f0c3
