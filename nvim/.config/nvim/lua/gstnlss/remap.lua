@@ -55,6 +55,7 @@ end
 -- Quit vim even if splits are open
 vim.keymap.set(
     'n', '<leader>q', function()
+    vim.cmd [[NvimTreeClose]]
     vim.cmd [[wa]]
     vim.cmd [[qall]]
 end

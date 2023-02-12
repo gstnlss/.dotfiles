@@ -1,3 +1,3 @@
 require('gstnlss.set')
 require('gstnlss.remap')
-require('gstnlss.packer')
+require('gstnlss.lazy')
