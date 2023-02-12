@@ -38,8 +38,8 @@ vim.keymap.set(
         end
     end
 
-    local is_modifiable = vim.api.nvim_buf_get_option(0, 'modifiable')
-    if is_modifiable then
+    local should_save = vim.api.nvim_buf_get_option(0, 'modified')
+    if should_save then
         vim.cmd [[w]]
     end
 
