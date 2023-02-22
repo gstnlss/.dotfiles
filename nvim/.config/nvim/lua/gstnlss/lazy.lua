@@ -22,7 +22,7 @@ require('lazy').setup(
         -- File navigation
         {
             'nvim-telescope/telescope.nvim',
-            version = '0.1.0',
+            version = '0.1.1',
             dependencies = { 'nvim-lua/plenary.nvim' }
         },
         'theprimeagen/harpoon',
@@ -76,6 +76,7 @@ require('lazy').setup(
             dependencies = { 'nvim-lua/plenary.nvim' }
         },
         'j-hui/fidget.nvim',
+        'mickael-menu/zk-nvim',
 
         -- UI/UX
         'nvim-lualine/lualine.nvim',
