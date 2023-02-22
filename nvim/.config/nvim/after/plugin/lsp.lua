@@ -142,5 +142,13 @@ lsp.configure(
     'lua_ls', { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
 )
 
+lsp.configure(
+    'omnisharp', {
+    enable_editorconfig_support = true,
+    enable_roslyn_analyzers = true,
+    enable_import_completion = true
+}
+)
+
 lsp.setup()
 require('fidget').setup()
