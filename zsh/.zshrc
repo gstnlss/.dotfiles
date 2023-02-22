@@ -75,5 +75,3 @@ export NVM_DIR="$HOME/.local/share/nvm"
 ## Node Version Manager ##
 
 [[ -n "$SSH_CONNECTION" ]] && PROMPT="%{$fg_bold[red]%}[%m] ${PROMPT}"
-
-[[ -x "$(command -v task)" ]] && task limit:10
