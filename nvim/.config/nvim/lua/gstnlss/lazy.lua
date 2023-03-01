@@ -77,6 +77,7 @@ require('lazy').setup(
         },
         'j-hui/fidget.nvim',
         'mickael-menu/zk-nvim',
+        'Hoffs/omnisharp-extended-lsp.nvim',
 
         -- UI/UX
         'nvim-lualine/lualine.nvim',
