@@ -87,7 +87,6 @@ require('lazy').setup(
             dependencies = 'nvim-tree/nvim-web-devicons'
         },
         'rmagatti/auto-session',
-        { 'weilbith/nvim-code-action-menu',  cmd = 'CodeActionMenu' },
 
         -- Commenting
         'numToStr/Comment.nvim',
