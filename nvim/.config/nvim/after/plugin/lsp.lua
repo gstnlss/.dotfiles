@@ -1,7 +1,8 @@
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
-lsp.ensure_installed({ 'tsserver' })
+lsp.ensure_installed({ 'tsserver', 'rust_analyzer' })
+lsp.skip_server_setup({ 'rust_analyzer' })
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -153,5 +154,12 @@ lsp.configure(
 }
 )
 
+lsp.nvim_workspace()
 lsp.setup()
+
+local rust_lsp = lsp.build_options('rust_analyzer')
+require('rust-tools').setup({ server = rust_lsp })
+
+vim.diagnostic.config({ virtual_text = true })
+
 require('fidget').setup()
