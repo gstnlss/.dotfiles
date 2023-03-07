@@ -57,6 +57,6 @@ vim.keymap.set(
     'n', '<leader>q', function()
     vim.cmd [[NvimTreeClose]]
     vim.cmd [[wa]]
-    vim.cmd [[qall]]
+    vim.cmd [[qall!]]
 end
 )

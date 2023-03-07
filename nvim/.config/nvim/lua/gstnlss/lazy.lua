@@ -78,10 +78,10 @@ require('lazy').setup(
             'jose-elias-alvarez/null-ls.nvim',
             dependencies = { 'nvim-lua/plenary.nvim' }
         },
-        'j-hui/fidget.nvim',
         'mickael-menu/zk-nvim',
         'Hoffs/omnisharp-extended-lsp.nvim',
         'simrat39/rust-tools.nvim',
+        'jose-elias-alvarez/typescript.nvim',
 
         -- UI/UX
         'nvim-lualine/lualine.nvim',

@@ -27,7 +27,8 @@ null_ls.setup(
             null_ls.builtins.formatting.prettierd,
             null_ls.builtins.diagnostics.eslint_d,
             null_ls.builtins.formatting.eslint_d,
-            null_ls.builtins.code_actions.eslint_d
+            null_ls.builtins.code_actions.eslint_d,
+            require('typescript.extensions.null-ls.code-actions')
         }
     }
 )
@@ -108,6 +109,11 @@ lsp.on_attach(
         end, opts
         )
         vim.keymap.set(
+            'v', '<leader>ca', function()
+            vim.lsp.buf.code_action()
+        end
+        )
+        vim.keymap.set(
             'n', 'gr', function()
             vim.lsp.buf.references()
         end, opts
@@ -161,5 +167,3 @@ local rust_lsp = lsp.build_options('rust_analyzer')
 require('rust-tools').setup({ server = rust_lsp })
 
 vim.diagnostic.config({ virtual_text = true })
-
-require('fidget').setup()
