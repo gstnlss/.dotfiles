@@ -91,6 +91,7 @@ require('lazy').setup(
             dependencies = 'nvim-tree/nvim-web-devicons'
         },
         'rmagatti/auto-session',
+        'petertriho/nvim-scrollbar',
 
         -- Commenting
         'numToStr/Comment.nvim',
