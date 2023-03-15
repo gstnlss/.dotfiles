@@ -12,8 +12,8 @@ vim.keymap.set('x', '<leader>p', '"_dP')
 
 vim.keymap.set(
     'n', '<leader>f', function()
-    vim.lsp.buf.format()
-end
+        vim.lsp.buf.format()
+    end
 )
 
 -- Quickfix list movement
@@ -31,32 +31,38 @@ vim.keymap.set('v', '<leader>rp', search_and_replace_cmd)
 -- Close current buffer
 vim.keymap.set(
     'n', '<leader>x', function()
-    local buffer_count = 0
-    for buffer = 1, vim.fn.bufnr('$') do
-        if vim.fn.buflisted(buffer) == 1 then
-            buffer_count = buffer_count + 1
+        local buffer_count = 0
+        for buffer = 1, vim.fn.bufnr('$') do
+            if vim.fn.buflisted(buffer) == 1 then
+                buffer_count = buffer_count + 1
+            end
+        end
+
+        local should_save = vim.api.nvim_buf_get_option(0, 'modified')
+        if should_save then
+            vim.cmd [[w]]
+        end
+
+        if buffer_count == 1 then
+            vim.cmd [[bd]]
+        else
+            vim.cmd [[bp]]
+            vim.cmd [[bd#]]
         end
     end
-
-    local should_save = vim.api.nvim_buf_get_option(0, 'modified')
-    if should_save then
-        vim.cmd [[w]]
-    end
-
-    if buffer_count == 1 then
-        vim.cmd [[bd]]
-    else
-        vim.cmd [[bp]]
-        vim.cmd [[bd#]]
-    end
-end
 )
 
 -- Quit vim even if splits are open
 vim.keymap.set(
     'n', '<leader>q', function()
-    vim.cmd [[NvimTreeClose]]
-    vim.cmd [[wa]]
-    vim.cmd [[qall!]]
-end
+        vim.cmd [[NvimTreeClose]]
+        vim.cmd [[wa]]
+        vim.cmd [[qall!]]
+    end
+)
+
+vim.keymap.set(
+    'n', '<leader>oc', function()
+        vim.cmd('DogeGenerate')
+    end
 )

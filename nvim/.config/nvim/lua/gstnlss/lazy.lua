@@ -95,6 +95,7 @@ require('lazy').setup(
 
         -- Commenting
         'numToStr/Comment.nvim',
-        'JoosepAlviste/nvim-ts-context-commentstring'
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        'kkoomen/vim-doge'
     }
 )
