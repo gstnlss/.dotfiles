@@ -11,12 +11,12 @@ if zk_util.notebook_root(vim.fn.expand('%:p')) ~= nil then
 
     map(
         '<leader>zn', function()
-        local title = vim.fn.input('Title > ')
+            local title = vim.fn.input('Title > ')
 
-        if (title ~= nil and title ~= '') then
-            zk.new({ dir = 'notes', title = title });
+            if (title ~= nil and title ~= '') then
+                zk.new({ dir = 'notes', title = title });
+            end
         end
-    end
     )
 
     map('<leader>zo', ':Telescope zk notes<CR>')
