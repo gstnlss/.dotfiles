@@ -8,12 +8,6 @@ taskd.certificate=~/.local/share/taskwarrior/agustin.cert.pem
 taskd.key=~/.local/share/taskwarrior/agustin.key.pem
 taskd.ca=~/.local/share/taskwarrior/ca.cert.pem
 
-report.standup.description=Quick reference for work stand up
-report.standup.columns=id,uuid.short,modified.age,tags,modified,end,description,urgency
-report.standup.labels=ID,UUID,Age,Tags,Modified,Completed,Description,Urgency
-report.standup.sort=end+,modified+,id-
-report.standup.filter=project:work and (modified:today or modified:yesterday or end:today or end:yesterday) and (+bug or +story)
-
 context.work.read=pro:work
 context.work.write=pro:work
 context.home.read=pro.not:work
