@@ -1,7 +1,36 @@
 local lsp = require('lsp-zero')
 
-lsp.preset('recommended')
-lsp.ensure_installed({ 'tsserver', 'rust_analyzer' })
+lsp.preset(
+    {
+        name = 'recommended',
+        set_lsp_keymaps = { omit = { '<F2>', '<F4>' } },
+        manage_nvim_cmp = true,
+        suggest_lsp_servers = true
+    }
+)
+lsp.ensure_installed(
+    {
+        'ansiblels',
+        'bashls',
+        'cssmodules_ls',
+        'cssls',
+        'docker_compose_language_service',
+        'dockerls',
+        'html',
+        'jsonls',
+        'lua_ls',
+        'omnisharp',
+        'pyright',
+        'rust_analyzer',
+        'tailwindcss',
+        'taplo',
+        'terraformls',
+        'tflint',
+        'tsserver',
+        'vimls',
+        'zk'
+    }
+)
 lsp.skip_server_setup({ 'rust_analyzer' })
 
 local null_ls = require('null-ls')
@@ -15,7 +44,12 @@ null_ls.setup(
             null_ls.builtins.diagnostics.eslint_d,
             null_ls.builtins.formatting.eslint_d,
             null_ls.builtins.code_actions.eslint_d,
-            require('typescript.extensions.null-ls.code-actions')
+            require('typescript.extensions.null-ls.code-actions'),
+            null_ls.builtins.diagnostics.terraform_validate,
+            null_ls.builtins.diagnostics.yamllint,
+            null_ls.builtins.formatting.packer,
+            null_ls.builtins.formatting.rustfmt,
+            null_ls.builtins.formatting.terraform_fmt
         }
     }
 )
@@ -66,16 +100,6 @@ lsp.on_attach(
             end, opts
         )
         vim.keymap.set(
-            'n', 'K', function()
-                vim.lsp.buf.hover()
-            end, opts
-        )
-        vim.keymap.set(
-            'n', '<leader>vws', function()
-                vim.lsp.buf.workspace_symbol()
-            end, opts
-        )
-        vim.keymap.set(
             'n', '<leader>d', function()
                 vim.diagnostic.open_float()
             end, opts
@@ -91,18 +115,8 @@ lsp.on_attach(
             end, opts
         )
         vim.keymap.set(
-            'n', '<leader>ca', function()
+            { 'n', 'v', 'x' }, '<leader>ca', function()
                 vim.lsp.buf.code_action()
-            end, opts
-        )
-        vim.keymap.set(
-            'v', '<leader>ca', function()
-                vim.lsp.buf.code_action()
-            end
-        )
-        vim.keymap.set(
-            'n', 'gr', function()
-                vim.lsp.buf.references()
             end, opts
         )
         vim.keymap.set(
@@ -142,7 +156,7 @@ lsp.configure(
         enable_roslyn_analyzers = true,
         enable_import_completion = true,
         handlers = {
-                ['textDocument/definition'] = require('omnisharp_extended').handler
+            ['textDocument/definition'] = require('omnisharp_extended').handler
         }
     }
 )
