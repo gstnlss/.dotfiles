@@ -10,6 +10,9 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 vim.keymap.set('x', '<leader>p', '"_dP')
 
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y')
+
 vim.keymap.set(
     'n', '<leader>f', function()
         vim.lsp.buf.format()
