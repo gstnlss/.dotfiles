@@ -18,6 +18,7 @@ lsp.ensure_installed(
         'dockerls',
         'html',
         'jsonls',
+        'ltex',
         'lua_ls',
         'omnisharp',
         'pyright',
