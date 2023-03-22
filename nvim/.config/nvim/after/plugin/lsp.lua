@@ -12,6 +12,7 @@ lsp.ensure_installed(
     {
         'ansiblels',
         'bashls',
+        'clangd',
         'cssmodules_ls',
         'cssls',
         'docker_compose_language_service',
@@ -132,7 +133,8 @@ lsp.on_attach(
         )
 
         -- Autoformatting
-        if client.supports_method('textDocument/formatting') then
+        if client.supports_method('textDocument/formatting') and client.name ~=
+            'clangd' then
             vim.api.nvim_create_autocmd(
                 'BufWritePre', {
                     group = format_on_save_group,
