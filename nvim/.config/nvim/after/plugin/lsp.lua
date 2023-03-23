@@ -150,6 +150,14 @@ lsp.on_attach(
 )
 
 lsp.configure(
+    'tsserver', {
+        init_options = {
+            preferences = { importModuleSpecifierPreference = 'non-relative' }
+        }
+    }
+)
+
+lsp.configure(
     'lua_ls', { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
 )
 
