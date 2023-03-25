@@ -92,6 +92,8 @@ end
 local format_on_save_group = vim.api.nvim_create_augroup(
     'FormatOnSave', { clear = true }
 )
+
+vim.g.gstnlss_autoformatting_enabled = true;
 lsp.on_attach(
     function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
@@ -132,15 +134,36 @@ lsp.on_attach(
             end, opts
         )
 
+        vim.keymap.set(
+            'n', '<leader>lr', function()
+                vim.cmd('LspRestart')
+            end
+        )
+
+        vim.keymap.set(
+            'n', '<leader>nf', function()
+                vim.g.gstnlss_autoformatting_enabled = not vim.g
+                    .gstnslss_autoformatting_enabled
+                print(
+                    'Autoformatting: ' ..
+                    (vim.g.gstnlss_autoformatting_enabled and 'on' or 'off')
+                )
+            end
+        )
+
+        -- local allow_autoformatting = { 'clangd', 'cssmodules_ls' }
+
         -- Autoformatting
-        if client.supports_method('textDocument/formatting') and client.name ~=
-            'clangd' then
+        if client.supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd(
                 'BufWritePre', {
                     group = format_on_save_group,
                     buffer = bufnr,
                     callback = function()
-                        vim.lsp.buf.format()
+                        if vim.g.gstnlss_autoformatting_enabled then
+                            vim.lsp.buf.format()
+                            print('Formatting: client=' .. client.name)
+                        end
                     end
                 }
             )
