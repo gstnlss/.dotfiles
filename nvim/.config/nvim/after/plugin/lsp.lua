@@ -8,6 +8,7 @@ lsp.preset(
         suggest_lsp_servers = true
     }
 )
+
 lsp.ensure_installed(
     {
         'ansiblels',
@@ -150,8 +151,6 @@ lsp.on_attach(
                 )
             end
         )
-
-        -- local allow_autoformatting = { 'clangd', 'cssmodules_ls' }
 
         -- Autoformatting
         if client.supports_method('textDocument/formatting') then
