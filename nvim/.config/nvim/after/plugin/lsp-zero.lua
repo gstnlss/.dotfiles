@@ -1,0 +1,163 @@
+local lsp = require('lsp-zero')
+
+lsp.preset(
+  {
+    name = 'recommended',
+    set_lsp_keymaps = { omit = { '<F2>', '<F4>' } },
+    manage_nvim_cmp = true,
+    suggest_lsp_servers = true
+  }
+)
+lsp.ensure_installed(
+  {
+    'ansiblels',
+    'bashls',
+    'clangd',
+    'cssmodules_ls',
+    'cssls',
+    'docker_compose_language_service',
+    'dockerls',
+    'html',
+    'jsonls',
+    'ltex',
+    'lua_ls',
+    'omnisharp',
+    'pyright',
+    'rust_analyzer',
+    'tailwindcss',
+    'taplo',
+    'terraformls',
+    'tflint',
+    'tsserver',
+    'vimls',
+    'zk'
+  }
+)
+lsp.skip_server_setup({ 'rust_analyzer', 'tsserver' })
+
+-- Fix for react type definition files showing on go to definition
+-- https://github.com/typescript-language-server/typescript-language-server/issues/216
+local function filter(arr, fn)
+  if type(arr) ~= 'table' then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+  return string.match(value.filename, 'react/index.d.ts') == nil
+end
+
+local function on_list(options)
+  local items = options.items
+  if #items > 1 then
+    items = filter(items, filterReactDTS)
+  end
+
+  vim.fn.setqflist(
+    {}, ' ', { title = options.title, items = items, context = options.context }
+  )
+  vim.cmd('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
+end
+
+local custom_on_attach = function(client, bufnr)
+  local opts = { buffer = bufnr, remap = false }
+
+  vim.keymap.set(
+    'n', 'gd', function()
+      vim.lsp.buf.definition({ on_list = on_list })
+    end, opts
+  )
+  vim.keymap.set(
+    'n', '<leader>d', function()
+      vim.diagnostic.open_float()
+    end, opts
+  )
+  vim.keymap.set(
+    'n', '[d', function()
+      vim.diagnostic.goto_next()
+    end, opts
+  )
+  vim.keymap.set(
+    'n', ']d', function()
+      vim.diagnostic.goto_prev()
+    end, opts
+  )
+  vim.keymap.set(
+    { 'n', 'v', 'x' }, '<leader>ca', function()
+      vim.lsp.buf.code_action()
+    end, opts
+  )
+  vim.keymap.set(
+    'n', '<leader>rn', function()
+      vim.lsp.buf.rename()
+    end, opts
+  )
+  vim.keymap.set(
+    'i', '<C-h>', function()
+      vim.lsp.buf.signature_help()
+    end, opts
+  )
+
+  vim.keymap.set(
+    'n', '<leader>lr', function()
+      vim.cmd('LspRestart')
+    end
+  )
+end
+
+lsp.on_attach(custom_on_attach)
+
+lsp.configure(
+  'tsserver', {
+    init_options = {
+      preferences = { importModuleSpecifierPreference = 'non-relative' }
+    }
+  }
+)
+
+lsp.configure(
+  'lua_ls', { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
+)
+
+lsp.configure(
+  'omnisharp', {
+    enable_editorconfig_support = true,
+    enable_roslyn_analyzers = true,
+    enable_import_completion = true,
+    handlers = {
+      ['textDocument/definition'] = require('omnisharp_extended').handler
+    }
+  }
+)
+
+lsp.nvim_workspace()
+lsp.setup()
+
+local tsserver_config = lsp.build_options(
+  'tsserver', { on_attach = custom_on_attach }
+);
+
+require('typescript').setup(
+  {
+    disable_commands = false,
+    debug = true,
+    go_to_source_definition = { fallback = true },
+    server = tsserver_config
+  }
+)
+
+local rust_analyzer_config = lsp.build_options(
+  'rust_analyzer', { on_attach = custom_on_attach }
+)
+require('rust-tools').setup({ server = rust_analyzer_config })
+
+vim.diagnostic.config({ virtual_text = true })
