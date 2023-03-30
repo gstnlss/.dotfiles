@@ -112,6 +112,22 @@ local custom_on_attach = function(client, bufnr)
       vim.cmd('LspRestart')
     end
   )
+
+  local lsp_format_on_save = vim.api.nvim_create_augroup(
+    'LspFormatOnSave', { clear = false }
+  )
+  if client.supports_method('textDocument/formatting') then
+    vim.api.nvim_clear_autocmds({ group = lsp_format_on_save, buffer = bufnr })
+    vim.api.nvim_create_autocmd(
+      'BufWritePre', {
+        group = lsp_format_on_save,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format()
+        end
+      }
+    )
+  end
 end
 
 lsp.on_attach(custom_on_attach)

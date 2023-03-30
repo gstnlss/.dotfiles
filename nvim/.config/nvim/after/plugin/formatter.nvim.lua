@@ -12,8 +12,6 @@ formatter.setup {
     javascriptreact = { filetypes.javascriptreact.prettierd },
     typescript = { filetypes.typescript.prettierd },
     typescriptreact = { filetypes.typescriptreact.prettierd },
-    -- dotnet
-    cs = { filetypes.cs.dotnetformat },
     -- all
     ['*'] = { filetypes.any.remove_trailing_whitespace }
   }
@@ -31,15 +29,14 @@ vim.keymap.set(
 )
 
 local format_on_save_augroup = vim.api.nvim_create_augroup(
-  'LspFormatOnSave', { clear = true }
+  'FormatterNvimOnSave', { clear = true }
 );
 vim.api.nvim_create_autocmd(
   'BufWritePost', {
     group = format_on_save_augroup,
-    pattern = { '*' },
     callback = function()
-      vim.lsp.buf.format()
       vim.cmd('FormatWrite')
+      vim.cmd('GitGutterBufferEnable') -- Gutter was not updating correctly
     end
   }
 )
