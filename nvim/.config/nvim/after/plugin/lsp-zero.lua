@@ -143,7 +143,8 @@ lsp.configure(
     enable_import_completion = true,
     handlers = {
       ['textDocument/definition'] = require('omnisharp_extended').handler
-    }
+    },
+    on_attach = custom_on_attach
   }
 )
 
