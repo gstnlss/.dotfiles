@@ -12,6 +12,8 @@ formatter.setup {
     javascriptreact = { filetypes.javascriptreact.prettierd },
     typescript = { filetypes.typescript.prettierd },
     typescriptreact = { filetypes.typescriptreact.prettierd },
+    -- rust
+    rust = { filetypes.rust.rustfmt },
     -- all
     ['*'] = { filetypes.any.remove_trailing_whitespace }
   }
