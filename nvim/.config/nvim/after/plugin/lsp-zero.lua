@@ -133,14 +133,6 @@ end
 lsp.on_attach(custom_on_attach)
 
 lsp.configure(
-  'tsserver', {
-    init_options = {
-      preferences = { importModuleSpecifierPreference = 'non-relative' }
-    }
-  }
-)
-
-lsp.configure(
   'lua_ls', { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
 )
 
@@ -158,14 +150,41 @@ lsp.configure(
 lsp.nvim_workspace()
 lsp.setup()
 
+local typescript = require 'typescript'
+
 local tsserver_config = lsp.build_options(
-  'tsserver', { on_attach = custom_on_attach }
+  'tsserver', {
+    init_options = {
+      preferences = { importModuleSpecifierPreference = 'non-relative' }
+    },
+    on_attach = function(client, bufnr)
+      custom_on_attach(client, bufnr)
+
+      vim.keymap.set(
+        'n', '<leader>ti', function()
+          typescript.actions.addMissingImports()
+        end, { silent = true }
+      );
+
+      vim.keymap.set(
+        'n', '<leader>tr', function()
+          typescript.actions.removeUnused()
+        end
+      )
+
+      vim.keymap.set(
+        'n', '<leader>to', function()
+          typescript.actions.organizeImports()
+        end
+      )
+    end
+  }
 );
 
-require('typescript').setup(
+typescript.setup(
   {
-    disable_commands = false,
-    debug = true,
+    disable_commands = true,
+    debug = false,
     go_to_source_definition = { fallback = true },
     server = tsserver_config
   }
