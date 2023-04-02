@@ -27,17 +27,23 @@ local clients_with_formatter = {
 local format_file = function()
   local clients = vim.lsp.buf_get_clients()
   local has_formatter = false
+  local has_client_with_formatting = false
 
   for _, client in pairs(clients) do
     if clients_with_formatter[client.name] then
       has_formatter = true
     end
+    if client.supports_method('textDocument/formatting') then
+      has_client_with_formatting = true
+    end
   end
 
   if has_formatter then
-    vim.cmd('FormatWrite<Esc>')
-  else
-    vim.lsp.buf.format()
+    return vim.cmd('FormatWrite')
+  end
+
+  if has_client_with_formatting then
+    return vim.lsp.buf.format()
   end
 end
 
