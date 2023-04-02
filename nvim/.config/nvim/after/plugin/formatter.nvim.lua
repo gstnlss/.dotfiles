@@ -35,7 +35,7 @@ local format_file = function()
   end
 
   if has_formatter then
-    vim.cmd('FormatWrite')
+    vim.cmd('FormatWrite<Esc>')
   else
     vim.lsp.buf.format()
   end
