@@ -39,7 +39,7 @@ local os_release = vim.loop.os_uname().release;
 if os_release:find('WSL2') then
   vim.opt.clipboard = {
     name = 'WslClipboard',
-    copy = { ['+'] = 'clip.exe',['*'] = 'clip.exe' },
+    copy = { ['+'] = 'clip.exe', ['*'] = 'clip.exe' },
     paste = {
       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'

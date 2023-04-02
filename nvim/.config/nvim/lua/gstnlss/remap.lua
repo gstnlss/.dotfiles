@@ -17,9 +17,9 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y')
 
 vim.keymap.set(
-    'n', '<leader>f', function()
-        vim.lsp.buf.format()
-    end
+  'n', '<leader>f', function()
+    vim.lsp.buf.format()
+  end
 )
 
 -- Quickfix list movement
@@ -30,45 +30,45 @@ vim.keymap.set('n', '<leader>k', '<cmd>lprev<CR>zz')
 
 -- Search & Replace in current file
 local search_and_replace_cmd =
-[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 vim.keymap.set('n', '<leader>rp', search_and_replace_cmd)
 vim.keymap.set('v', '<leader>rp', search_and_replace_cmd)
 
 -- Close current buffer
 vim.keymap.set(
-    'n', '<leader>x', function()
-        local buffer_count = 0
-        for buffer = 1, vim.fn.bufnr('$') do
-            if vim.fn.buflisted(buffer) == 1 then
-                buffer_count = buffer_count + 1
-            end
-        end
-
-        local should_save = vim.api.nvim_buf_get_option(0, 'modified')
-        if should_save then
-            vim.cmd [[w]]
-        end
-
-        if buffer_count == 1 then
-            vim.cmd [[bd]]
-        else
-            vim.cmd [[bp]]
-            vim.cmd [[bd#]]
-        end
+  'n', '<leader>x', function()
+    local buffer_count = 0
+    for buffer = 1, vim.fn.bufnr('$') do
+      if vim.fn.buflisted(buffer) == 1 then
+        buffer_count = buffer_count + 1
+      end
     end
+
+    local should_save = vim.api.nvim_buf_get_option(0, 'modified')
+    if should_save then
+      vim.cmd [[w]]
+    end
+
+    if buffer_count == 1 then
+      vim.cmd [[bd]]
+    else
+      vim.cmd [[bp]]
+      vim.cmd [[bd#]]
+    end
+  end
 )
 
 -- Quit vim even if splits are open
 vim.keymap.set(
-    'n', '<leader>q', function()
-        vim.cmd [[NvimTreeClose]]
-        vim.cmd [[wa]]
-        vim.cmd [[qall!]]
-    end
+  'n', '<leader>q', function()
+    vim.cmd [[NvimTreeClose]]
+    vim.cmd [[wa]]
+    vim.cmd [[qall!]]
+  end
 )
 
 vim.keymap.set(
-    'n', '<leader>oc', function()
-        vim.cmd('DogeGenerate')
-    end
+  'n', '<leader>oc', function()
+    vim.cmd('DogeGenerate')
+  end
 )
