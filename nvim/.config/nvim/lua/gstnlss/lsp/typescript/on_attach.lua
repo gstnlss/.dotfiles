@@ -1,12 +1,12 @@
 local typescript = require 'typescript';
-local filter_react_dts = require 'gstnlss.lsp.typescript.filter_react_dts'
+local definition_on_list = require 'gstnlss.lsp.typescript.definition_on_list'
 
 local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set(
     'n', 'gd', function()
-      vim.lsp.buf.definition({ on_list = filter_react_dts })
+      vim.lsp.buf.definition({ on_list = definition_on_list })
     end, opts
   )
 

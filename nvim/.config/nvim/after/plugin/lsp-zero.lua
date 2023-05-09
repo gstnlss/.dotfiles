@@ -34,7 +34,9 @@ lsp.ensure_installed(
     'zk'
   }
 )
-lsp.skip_server_setup({ 'rust_analyzer', 'tsserver' })
+lsp.skip_server_setup(
+  { 'rust_analyzer', 'tsserver', 'tailwindcss', 'cssmodules_ls' }
+)
 lsp.on_attach(on_attach)
 
 require 'gstnlss.lsp.lua_ls'
