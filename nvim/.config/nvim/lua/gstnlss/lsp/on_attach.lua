@@ -1,4 +1,6 @@
-local on_attach = function(_, bufnr)
+local lsp_format_on_attach = require 'gstnlss.lsp.lsp_format_on_attach'
+
+local on_attach = function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set(
@@ -36,12 +38,13 @@ local on_attach = function(_, bufnr)
       vim.lsp.buf.signature_help()
     end, opts
   )
-
   vim.keymap.set(
     'n', '<leader>lr', function()
       vim.cmd('LspRestart')
     end
   )
+
+  lsp_format_on_attach(client)
 end
 
 return on_attach

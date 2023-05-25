@@ -18,7 +18,7 @@ vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y')
 
 vim.keymap.set(
   'n', '<leader>f', function()
-    vim.lsp.buf.format()
+    vim.cmd('Format')
   end
 )
 

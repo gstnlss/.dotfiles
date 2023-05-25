@@ -1,5 +1,7 @@
-local filter_react_dts = require 'gstnlss.lsp.typescript.filter_react_dts'
-local filter_cssmodules_dts = require 'gstnlss.lsp.typescript.filter_react_dts'
+local is_react_dts = function(item)
+  return string.match(item.filename, 'react/index%.d%.ts') ~= nil or
+           string.match(item.filename, 'lib/react%-app%.d%.ts') ~= nil
+end
 
 local function filter(arr)
   if type(arr) ~= 'table' then
@@ -8,7 +10,7 @@ local function filter(arr)
 
   local filtered = {}
   for _, v in pairs(arr) do
-    if filter_react_dts(v.filename) or filter_cssmodules_dts(v.filename) then
+    if not is_react_dts(v) then
       table.insert(filtered, v)
     end
   end

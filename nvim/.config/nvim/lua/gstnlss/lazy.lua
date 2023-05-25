@@ -74,8 +74,9 @@ require('lazy').setup(
         { 'rafamadriz/friendly-snippets' }
       }
     },
-    'mhartington/formatter.nvim',
-    'mfussenegger/nvim-lint',
+    -- General Purpose LSP
+    { 'jose-elias-alvarez/null-ls.nvim' },
+    { 'lukas-reineke/lsp-format.nvim' },
     'mickael-menu/zk-nvim',
     'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
