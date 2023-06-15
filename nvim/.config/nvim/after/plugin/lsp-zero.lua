@@ -11,26 +11,19 @@ lsp.preset(
 )
 lsp.ensure_installed(
   {
-    'ansiblels',
     'bashls',
     'clangd',
     'cssmodules_ls',
     'cssls',
-    'docker_compose_language_service',
-    'dockerls',
     'html',
     'jsonls',
-    'ltex',
     'lua_ls',
     'omnisharp',
-    'pyright',
     'rust_analyzer',
     'tailwindcss',
-    'taplo',
     'terraformls',
     'tflint',
     'tsserver',
-    'vimls',
     'zk'
   }
 )
