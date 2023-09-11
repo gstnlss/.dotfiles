@@ -1,5 +1,8 @@
 # Changelog
 
+## 2023-09-11
+- Removed `taskwarrior` on-exit-sync hook.
+
 ## 2022-06-28
 - Added `taskwarrior`
 
