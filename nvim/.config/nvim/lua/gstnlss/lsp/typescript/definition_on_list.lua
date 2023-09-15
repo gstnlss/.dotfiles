@@ -1,6 +1,5 @@
 local is_react_dts = function(item)
-  return string.match(item.filename, 'react/index%.d%.ts') ~= nil or
-           string.match(item.filename, 'lib/react%-app%.d%.ts') ~= nil
+  return string.match(item.filename, 'react/index%.d%.ts') ~= nil or string.match(item.filename, 'lib/react%-app%.d%.ts') ~= nil
 end
 
 local function filter(arr)
@@ -24,7 +23,7 @@ local function on_list(options)
   if #items > 0 then
     vim.fn.setqflist(
       {}, 'r',
-        { title = options.title, items = items, context = options.context }
+      { title = options.title, items = items, context = options.context }
     )
     vim.cmd('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
     return

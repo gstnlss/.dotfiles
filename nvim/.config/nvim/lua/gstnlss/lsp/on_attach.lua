@@ -1,13 +1,6 @@
-local lsp_format_on_attach = require 'gstnlss.lsp.lsp_format_on_attach'
-
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
-  vim.keymap.set(
-    'n', 'gd', function()
-      vim.lsp.buf.definition()
-    end, opts
-  )
   vim.keymap.set(
     'n', '<leader>d', function()
       vim.diagnostic.open_float()
@@ -41,10 +34,24 @@ local on_attach = function(client, bufnr)
   vim.keymap.set(
     'n', '<leader>lr', function()
       vim.cmd('LspRestart')
-    end
+    end, opts
   )
 
-  lsp_format_on_attach(client)
+  vim.keymap.set(
+    'n', 'gr', function()
+      require('telescope.builtin').lsp_references()
+    end, { remap = false }
+  )
 end
 
-return on_attach
+local on_attach_definition = function(_, bufnr)
+  local opts = { buffer = bufnr, remap = false }
+
+  vim.keymap.set(
+    'n', 'gd', function()
+      require('telescope.builtin').lsp_definitions()
+    end, opts
+  )
+end
+
+return { on_attach = on_attach, on_attach_definition = on_attach_definition }

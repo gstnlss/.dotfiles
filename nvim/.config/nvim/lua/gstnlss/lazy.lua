@@ -54,33 +54,43 @@ require('lazy').setup(
     'windwp/nvim-autopairs',
 
     -- LSP
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
     {
       'VonHeikemen/lsp-zero.nvim',
+      branch = 'v3.x',
+      lazy = true,
+      config = false
+      -- dependencies = {
+      --   -- Autocompletion
+      --   { 'saadparwaiz1/cmp_luasnip' },
+      --   { 'hrsh7th/cmp-nvim-lsp' },
+      --   { 'hrsh7th/cmp-nvim-lua' },
+      --   -- Snippets
+      --   { 'L3MON4D3/LuaSnip' },
+      --   -- Snippet Collection (Optional)
+      --   { 'rafamadriz/friendly-snippets' }
+      -- }
+    },
+    { 'neovim/nvim-lspconfig', dependencies = { { 'hrsh7th/cmp-nvim-lsp' } } },
+    {
+      'hrsh7th/nvim-cmp',
       dependencies = {
-        -- LSP Support
-        { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim' },
-        { 'williamboman/mason-lspconfig.nvim' },
-        -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'saadparwaiz1/cmp_luasnip' },
-        { 'hrsh7th/cmp-nvim-lsp' },
-        { 'hrsh7th/cmp-nvim-lua' },
-        -- Snippets
         { 'L3MON4D3/LuaSnip' },
-        -- Snippet Collection (Optional)
-        { 'rafamadriz/friendly-snippets' }
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' }
       }
     },
     -- General Purpose LSP
-    { 'jose-elias-alvarez/null-ls.nvim' },
     { 'lukas-reineke/lsp-format.nvim' },
-    'mickael-menu/zk-nvim',
     'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
+    {
+      'creativenull/efmls-configs-nvim',
+      version = 'v1.x.x',
+      dependencies = { 'neovim/nvim-lspconfig' }
+    },
 
     -- UI/UX
     'nvim-lualine/lualine.nvim',
