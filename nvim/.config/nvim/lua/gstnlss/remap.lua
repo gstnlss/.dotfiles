@@ -16,12 +16,6 @@ vim.keymap.set('x', '<leader>p', '"_dP')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y')
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>Y', '"+Y')
 
-vim.keymap.set(
-  'n', '<leader>f', function()
-    vim.cmd('Format')
-  end
-)
-
 -- Quickfix list movement
 vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')

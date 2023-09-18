@@ -11,20 +11,22 @@ lsp_zero.on_attach(
   end
 )
 
-lsp_zero.format_on_save(
-  {
-    format_opts = { async = false, timeout_ms = 10000 },
-    servers = {
-      ['efm'] = {
-        'lua',
-        'typescript',
-        'typescriptreact',
-        'javascript',
-        'javascriptreact'
-      }
-    }
+local formatting_options = {
+  format_opts = { async = false, timeout_ms = 10000 },
+  servers = {
+    ['efm'] = {
+      'lua',
+      'typescript',
+      'typescriptreact',
+      'javascript',
+      'javascriptreact'
+    },
+    ['jsonls'] = { 'json' }
   }
-)
+}
+
+lsp_zero.format_on_save(formatting_options)
+lsp_zero.format_mapping('<leader>f', formatting_options)
 
 local lspconfig = require 'lspconfig'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
