@@ -10,6 +10,8 @@ local tsserver = {
   require 'efmls-configs.formatters.prettier_d'
 }
 
+local css = { require 'efmls-configs.formatters.prettier_d' }
+
 return function()
   lspconfig.efm.setup(
     {
@@ -21,7 +23,8 @@ return function()
           typescript = tsserver,
           typescriptreact = tsserver,
           javascript = tsserver,
-          javascriptreact = tsserver
+          javascriptreact = tsserver,
+          css = css
         }
       }
     }

@@ -19,7 +19,8 @@ local formatting_options = {
       'typescript',
       'typescriptreact',
       'javascript',
-      'javascriptreact'
+      'javascriptreact',
+      'css'
     },
     ['jsonls'] = { 'json' }
   }

@@ -32,3 +32,5 @@ vim.keymap.set(
     end
   end
 )
+
+vim.keymap.set('n', '<leader>pr', builtin.resume)
