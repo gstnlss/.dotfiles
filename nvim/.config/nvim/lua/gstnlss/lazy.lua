@@ -56,22 +56,7 @@ require('lazy').setup(
     -- LSP
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
-    {
-      'VonHeikemen/lsp-zero.nvim',
-      branch = 'v3.x',
-      lazy = true,
-      config = false
-      -- dependencies = {
-      --   -- Autocompletion
-      --   { 'saadparwaiz1/cmp_luasnip' },
-      --   { 'hrsh7th/cmp-nvim-lsp' },
-      --   { 'hrsh7th/cmp-nvim-lua' },
-      --   -- Snippets
-      --   { 'L3MON4D3/LuaSnip' },
-      --   -- Snippet Collection (Optional)
-      --   { 'rafamadriz/friendly-snippets' }
-      -- }
-    },
+    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false },
     { 'neovim/nvim-lspconfig', dependencies = { { 'hrsh7th/cmp-nvim-lsp' } } },
     {
       'hrsh7th/nvim-cmp',
@@ -101,6 +86,7 @@ require('lazy').setup(
     },
     'rmagatti/auto-session',
     'petertriho/nvim-scrollbar',
+    { 'goolord/alpha-nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 
     -- Commenting
     'numToStr/Comment.nvim',

@@ -44,7 +44,9 @@ require('mason-lspconfig').setup(
       'jsonls',
       'html',
       'cssmodules_ls',
-      'efm'
+      'efm',
+      'lua_ls',
+      'bashls'
     },
     handlers = {
       lsp_zero.default_setup,
@@ -57,7 +59,10 @@ require('mason-lspconfig').setup(
       tailwindcss = function()
         lspconfig.tailwindcss.setup({ capabilities = capabilities })
       end,
-      efm = require 'gstnlss.lsp.efm'
+      efm = require 'gstnlss.lsp.efm',
+      bashls = function()
+        lspconfig.bashls.setup({ filetypes = {'sh', 'zsh'}})
+      end
     }
   }
 )

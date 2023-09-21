@@ -1,3 +1,6 @@
+vim.o.sessionoptions =
+  'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+
 vim.g.mapleader = ' '
 
 vim.opt.number = true

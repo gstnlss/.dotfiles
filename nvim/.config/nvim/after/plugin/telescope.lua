@@ -18,13 +18,13 @@ require('telescope').setup(
 local builtin = require('telescope.builtin')
 
 vim.keymap.set(
-  'n', '<leader>pf', function()
+  'n', '<leader>sf', function()
     builtin.find_files({ hidden = true })
   end, {}
 )
-vim.keymap.set('n', '<leader>pg', builtin.git_files, {})
+vim.keymap.set('n', '<leader>sg', builtin.git_files, {})
 vim.keymap.set(
-  'n', '<leader>ps', function()
+  'n', '<leader>ss', function()
     local search = vim.fn.input('Grep > ')
 
     if (search ~= nil and search ~= '') then
@@ -33,4 +33,4 @@ vim.keymap.set(
   end
 )
 
-vim.keymap.set('n', '<leader>pr', builtin.resume)
+vim.keymap.set('n', '<leader>sr', builtin.resume)
