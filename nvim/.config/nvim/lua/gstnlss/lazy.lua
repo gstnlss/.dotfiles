@@ -34,11 +34,14 @@ require('lazy').setup(
     },
 
     -- Color theme
+    { 'morhetz/gruvbox', name = 'gruvbox' },
     {
-      'morhetz/gruvbox',
-      name = 'gruvbox',
+      'folke/tokyonight.nvim',
+      lazy = false,
+      priority = 1000,
+      opts = {},
       config = function()
-        vim.cmd('colorscheme gruvbox')
+        vim.cmd('colorscheme tokyonight-moon')
       end
     },
 
