@@ -35,7 +35,7 @@
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-doge": { "branch": "master", "commit": "d4ead080f9c45bda760f85f4c34620255094dff5" },
   "vim-fugitive": { "branch": "master", "commit": "99db68d9b3304580bd383da7aaee05c7a954a344" },
-  "vim-gitgutter": { "branch": "main", "commit": "f7b97666ae36c7b3f262f3190dbcd7033845d985" },
+  "vim-gitgutter": { "branch": "master", "commit": "e2056e54c50c6f3fbf386108eeb013e2a7f14ae3" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
 }
