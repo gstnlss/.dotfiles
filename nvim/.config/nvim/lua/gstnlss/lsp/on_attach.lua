@@ -38,6 +38,12 @@ local on_attach = function(_, bufnr)
   )
 
   vim.keymap.set(
+    'n', 'K', function()
+      vim.lsp.buf.hover()
+    end, opts
+  )
+
+  vim.keymap.set(
     'n', 'gr', function()
       require('telescope.builtin').lsp_references()
     end, { remap = false }

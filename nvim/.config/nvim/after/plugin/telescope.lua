@@ -34,3 +34,4 @@ vim.keymap.set(
 )
 
 vim.keymap.set('n', '<leader>sr', builtin.resume)
+vim.keymap.set('n', '<leader>st', builtin.git_status)
