@@ -61,7 +61,7 @@ require('mason-lspconfig').setup(
       end,
       efm = require 'gstnlss.lsp.efm',
       bashls = function()
-        lspconfig.bashls.setup({ filetypes = {'sh', 'zsh'}})
+        lspconfig.bashls.setup({ filetypes = { 'sh', 'zsh' } })
       end
     }
   }

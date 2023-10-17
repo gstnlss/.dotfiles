@@ -15,10 +15,12 @@ require('nvim-tree').setup(
       indent_markers = { enable = true }
     },
     actions = {
-      open_file = { quit_on_open = true, window_picker = { enable = true } }
+      open_file = { quit_on_open = true, window_picker = { enable = true } },
+      change_dir = { global = true }
     },
     live_filter = { prefix = 'Filter: ', always_show_folders = false },
-    filesystem_watchers = { enable = true }
+    filesystem_watchers = { enable = true },
+    sync_root_with_cwd = true
   }
 )
 
