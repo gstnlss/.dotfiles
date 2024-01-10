@@ -1,25 +1,23 @@
-local mark = require('harpoon.mark')
-local ui = require('harpoon.ui')
+local harpoon = require('harpoon')
 
-vim.keymap.set('n', '<leader>ha', mark.add_file)
-vim.keymap.set('n', '<leader>hh', ui.toggle_quick_menu)
+harpoon:setup()
+
+vim.keymap.set(
+  'n', '<leader>ha', function()
+    harpoon:list():append()
+  end
+)
+vim.keymap.set(
+  'n', '<leader>hh', function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+  end
+)
 
 local MAX_MARKS = 5;
-
 for i = 1, MAX_MARKS do
-    vim.keymap.set(
-        'n', '<leader>h' .. i, function()
-        mark.set_current_at(i)
+  vim.keymap.set(
+    'n', '<leader>' .. i, function()
+      harpoon:list():select(i)
     end
-    )
-    vim.keymap.set(
-        'n', '<leader>' .. i, function()
-        ui.nav_file(i)
-    end
-    )
-    vim.keymap.set(
-        'n', '<leader>hd' .. i, function()
-        mark.rm_file(i)
-    end
-    )
+  )
 end

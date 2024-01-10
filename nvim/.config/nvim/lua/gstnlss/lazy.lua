@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup(
   {
     -- Treesitter
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate', version = 'v0.9.*' },
     'nvim-treesitter/playground',
 
     -- File navigation
@@ -25,7 +25,11 @@ require('lazy').setup(
       version = '0.1.4',
       dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    'theprimeagen/harpoon',
+    {
+      'theprimeagen/harpoon',
+      branch = 'harpoon2',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     {
       'nvim-tree/nvim-tree.lua',
       dependencies = {
