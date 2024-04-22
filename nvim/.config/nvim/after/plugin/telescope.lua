@@ -35,4 +35,4 @@ vim.keymap.set(
 
 vim.keymap.set('n', '<leader>sr', builtin.resume)
 vim.keymap.set('n', '<leader>st', builtin.git_status)
-vim.keymap.set('n', '<leader>sb', builtin.git_branches)
+vim.keymap.set('n', '<leader>sb', builtin.buffers)

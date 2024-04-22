@@ -22,7 +22,7 @@ require('lazy').setup(
     -- File navigation
     {
       'nvim-telescope/telescope.nvim',
-      version = '0.1.4',
+      version = '0.1.*',
       dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
