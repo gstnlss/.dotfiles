@@ -7,7 +7,7 @@ require('lualine').setup(
         {
           function()
             local msg = 'No Active LSP'
-            local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
 
             if next(clients) == nil then
               return msg

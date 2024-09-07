@@ -20,7 +20,8 @@ require('nvim-tree').setup(
     },
     live_filter = { prefix = 'Filter: ', always_show_folders = false },
     filesystem_watchers = { enable = true },
-    sync_root_with_cwd = true
+    sync_root_with_cwd = true,
+    update_focused_file = { enable = true }
   }
 )
 

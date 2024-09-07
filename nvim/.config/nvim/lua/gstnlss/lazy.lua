@@ -22,7 +22,7 @@ require('lazy').setup(
     -- File navigation
     {
       'nvim-telescope/telescope.nvim',
-      version = '0.1.*',
+      tag = '0.1.8',
       dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
@@ -38,7 +38,7 @@ require('lazy').setup(
     },
 
     -- Color theme
-    { 'morhetz/gruvbox', name = 'gruvbox' },
+    -- { 'morhetz/gruvbox', name = 'gruvbox' },
     {
       'folke/tokyonight.nvim',
       lazy = false,
@@ -63,10 +63,22 @@ require('lazy').setup(
     -- LSP
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false },
+    { 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x', lazy = true, config = false },
     { 'neovim/nvim-lspconfig', dependencies = { { 'hrsh7th/cmp-nvim-lsp' } } },
     {
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      opts = {
+        library = { { path = 'luvit-meta/library', words = { 'vim%.uv' } } }
+      }
+    },
+    { 'Bilal2453/luvit-meta', lazy = true },
+    {
       'hrsh7th/nvim-cmp',
+      opts = function(_, opts)
+        opts.sources = opts.sources or {}
+        table.insert(opts.sources, { name = 'lazydev', group_index = 0 })
+      end,
       dependencies = {
         { 'L3MON4D3/LuaSnip' },
         { 'hrsh7th/cmp-buffer' },
@@ -88,16 +100,14 @@ require('lazy').setup(
     'nvim-lualine/lualine.nvim',
     {
       'akinsho/bufferline.nvim',
-      version = 'v3.*',
+      version = '*',
       dependencies = 'nvim-tree/nvim-web-devicons'
     },
     'rmagatti/auto-session',
     'petertriho/nvim-scrollbar',
-    { 'goolord/alpha-nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 
     -- Commenting
     'numToStr/Comment.nvim',
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    'kkoomen/vim-doge'
+    'JoosepAlviste/nvim-ts-context-commentstring'
   }
 )

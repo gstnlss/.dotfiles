@@ -38,7 +38,7 @@ vim.keymap.set(
       end
     end
 
-    local should_save = vim.api.nvim_buf_get_option(0, 'modified')
+    local should_save = vim.api.nvim_get_option_value('modified', { buf = 0 })
     if should_save then
       vim.cmd [[w]]
     end

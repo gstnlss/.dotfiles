@@ -1,3 +1,5 @@
+local picker_config = { theme = 'dropdown', layout_config = { width = 0.6 } }
+
 require('telescope').setup(
   {
     defaults = {
@@ -11,9 +13,18 @@ require('telescope').setup(
         '--smart-case',
         '--hidden'
       }
+    },
+    pickers = {
+      find_files = picker_config,
+      grep_string = picker_config,
+      buffers = picker_config,
+      git_files = picker_config
     }
   }
 )
+
+-- Display line numbers on previewer
+vim.cmd [[autocmd User TelescopePreviewerLoaded setlocal number]]
 
 local builtin = require('telescope.builtin')
 

@@ -20,7 +20,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv('HOME') .. '/.local/share/nvim/undodir'
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -38,7 +38,7 @@ vim.opt.mouse = ''
 vim.cmd [[filetype plugin on]]
 
 -- System clipboard config for WSL2
-local os_release = vim.loop.os_uname().release;
+local os_release = vim.uv.os_uname().release;
 if os_release:find('WSL2') then
   vim.opt.clipboard = {
     name = 'WslClipboard',

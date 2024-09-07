@@ -69,11 +69,11 @@ require('mason-lspconfig').setup(
 
 local cmp = require 'cmp'
 local cmp_action = lsp_zero.cmp_action()
-local cmp_format = lsp_zero.cmp_format()
+local cmp_format = lsp_zero.cmp_format({})
 
 cmp.setup(
   {
-    sources = { { name = 'nvim_lsp' }, { name = 'buffer' }, { nmae = 'path' } },
+    sources = { { name = 'nvim_lsp' }, { name = 'buffer' }, { name = 'path' } },
     mapping = cmp.mapping.preset.insert(
       {
         -- `Enter` key to confirm completion
