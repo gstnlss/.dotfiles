@@ -32,7 +32,7 @@ lsp_zero.format_mapping('<leader>f', formatting_options)
 local lspconfig = require 'lspconfig'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require('mason').setup({})
+require('mason').setup({ ui = { border = 'single' } })
 require('mason-lspconfig').setup(
   {
     ensure_installed = {
@@ -98,4 +98,20 @@ cmp.setup(
     }
   }
 )
+
+-- Add borders to lsp related floating windows:
+-- https://vi.stackexchange.com/questions/39074/user-borders-around-lsp-floating-windows
+local border = 'single'
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover, { border = border }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, { border = border }
+)
+
+vim.diagnostic.config({ float = { border = border } })
+
+require('lspconfig.ui.windows').default_options = { border = border }
 

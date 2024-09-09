@@ -52,17 +52,21 @@ vim.keymap.set(
   end
 )
 
+-- Close all buffers but current one
+vim.keymap.set(
+  'n', '<leader>re', function()
+    vim.cmd [[%bd|e#]]
+
+    local no_name_buf = vim.fn.bufnr('$')
+    vim.api.nvim_buf_delete(no_name_buf, {})
+  end
+)
+
 -- Quit vim even if splits are open
 vim.keymap.set(
   'n', '<leader>q', function()
     vim.cmd [[NvimTreeClose]]
     vim.cmd [[wa]]
     vim.cmd [[qall!]]
-  end
-)
-
-vim.keymap.set(
-  'n', '<leader>oc', function()
-    vim.cmd('DogeGenerate')
   end
 )
