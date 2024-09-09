@@ -1,21 +1,19 @@
-local typescript = require 'typescript'
+local typescript_tools = require('typescript-tools')
 local on_attach = require'gstnlss.lsp.on_attach'.on_attach
 local ts_on_attach = require 'gstnlss.lsp.typescript.on_attach'
 
 return function()
-  typescript.setup(
+  typescript_tools.setup(
     {
-      disable_commands = true,
-      debug = false,
-      go_to_source_definition = { fallback = true },
-      server = {
-        init_options = {
-          preferences = { importModuleSpecifierPreference = 'non-relative' }
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        ts_on_attach(client, bufnr)
+      end,
+      settings = {
+        tsserver_file_preferences = {
+          importModuleSpecifierPreference = 'non-relative'
         },
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          ts_on_attach(client, bufnr)
-        end
+        jsx_close_tag = { enable = true }
       }
     }
   )

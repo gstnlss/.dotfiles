@@ -36,7 +36,7 @@ require('mason').setup({ ui = { border = 'single' } })
 require('mason-lspconfig').setup(
   {
     ensure_installed = {
-      'tsserver',
+      'ts_ls',
       'rust_analyzer',
       'omnisharp',
       'tailwindcss',
@@ -51,7 +51,7 @@ require('mason-lspconfig').setup(
     handlers = {
       lsp_zero.default_setup,
       rust_analyzer = require 'gstnlss.lsp.rust',
-      tsserver = require 'gstnlss.lsp.typescript',
+      ts_ls = require 'gstnlss.lsp.typescript',
       omnisharp = require 'gstnlss.lsp.omnisharp',
       cssmodules_ls = function()
         lspconfig.cssmodules_ls.setup({ capabilities = capabilities })

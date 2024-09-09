@@ -1,4 +1,3 @@
-local typescript = require 'typescript';
 local definition_on_list = require 'gstnlss.lsp.typescript.definition_on_list'
 
 local on_attach = function(_, bufnr)
@@ -12,19 +11,19 @@ local on_attach = function(_, bufnr)
 
   vim.keymap.set(
     'n', '<leader>ti', function()
-      typescript.actions.addMissingImports()
+      vim.cmd [[TSToolsAddMissingImports]]
     end, opts
   );
 
   vim.keymap.set(
     'n', '<leader>tr', function()
-      typescript.actions.removeUnused()
+      vim.cmd [[TSToolsRemoveUnused]]
     end, opts
   )
 
   vim.keymap.set(
     'n', '<leader>to', function()
-      typescript.actions.organizeImports()
+      vim.cmd [[TSToolsOrganizeImports]]
     end, opts
   )
 end
