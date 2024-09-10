@@ -19,6 +19,7 @@ require('telescope').setup(
       grep_string = picker_config,
       buffers = picker_config,
       git_files = picker_config,
+      lsp_definitions = picker_config,
       lsp_references = picker_config
     }
   }
