@@ -86,7 +86,6 @@ require('lazy').setup(
       }
     },
     -- General Purpose LSP
-    { 'lukas-reineke/lsp-format.nvim' },
     {
       'pmizio/typescript-tools.nvim',
       dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
