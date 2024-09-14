@@ -12,6 +12,10 @@ local tsserver = {
 
 local css = { require 'efmls-configs.formatters.prettier_d' }
 
+local terraform = { require 'efmls-configs.formatters.terraform_fmt' }
+
+local yaml = { require 'efmls-configs.linters.yamllint' }
+
 return function()
   lspconfig.efm.setup(
     {
@@ -24,7 +28,9 @@ return function()
           typescriptreact = tsserver,
           javascript = tsserver,
           javascriptreact = tsserver,
-          css = css
+          css = css,
+          terraform = terraform,
+          yaml = yaml
         }
       }
     }

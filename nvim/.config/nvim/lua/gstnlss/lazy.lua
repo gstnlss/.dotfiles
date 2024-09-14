@@ -37,8 +37,6 @@ require('lazy').setup(
       }
     },
 
-    -- Color theme
-    -- { 'morhetz/gruvbox', name = 'gruvbox' },
     {
       'folke/tokyonight.nvim',
       lazy = false,
@@ -63,7 +61,7 @@ require('lazy').setup(
     -- LSP
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x', lazy = true, config = false },
+    { 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x', lazy = true },
     { 'neovim/nvim-lspconfig', dependencies = { { 'hrsh7th/cmp-nvim-lsp' } } },
     {
       'folke/lazydev.nvim',
@@ -91,7 +89,6 @@ require('lazy').setup(
       dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
       opts = {}
     },
-    -- 'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim',
     {

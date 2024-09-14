@@ -1,4 +1,3 @@
-local lsp_utils = require('lspconfig.util')
 local lsp_zero = require('lsp-zero')
 local on_attach = require('gstnlss.lsp.on_attach').on_attach
 local on_attach_definition =
@@ -21,7 +20,9 @@ local formatting_options = {
       'typescriptreact',
       'javascript',
       'javascriptreact',
-      'css'
+      'css',
+      'terraform',
+      'yaml'
     },
     ['jsonls'] = { 'json' },
     ['docker_compose_language_service'] = { 'yaml' }
@@ -49,7 +50,9 @@ require('mason-lspconfig').setup(
       'efm',
       'lua_ls',
       'bashls',
-      'docker_compose_language_service'
+      'terraformls',
+      'docker_compose_language_service',
+      'yamlls'
     },
     handlers = {
       lsp_zero.default_setup,
@@ -67,18 +70,22 @@ require('mason-lspconfig').setup(
         lspconfig.bashls.setup({ filetypes = { 'sh', 'zsh' } })
       end,
       docker_compose_language_service = function()
-        lspconfig.docker_compose_language_service.setup(
-          {
-            filetypes = { 'yaml' },
-            root_dir = lsp_utils.root_pattern(
-              'docker-compose.yaml', 'docker-compose.yml'
-            ),
-            single_file_support = true
-          }
-        )
+        lspconfig.docker_compose_language_service.setup({})
       end
     }
   }
+)
+
+vim.api.nvim_create_autocmd(
+  { 'BufRead', 'BufNewFile' }, {
+    pattern = { '*.tf', '*.tfvars' },
+    callback = function()
+      vim.cmd [[set filetype=terraform]]
+    end
+  }
+)
+lspconfig.terraformls.setup(
+  { on_attach = on_attach, capabilities = capabilities }
 )
 
 local cmp = require 'cmp'
