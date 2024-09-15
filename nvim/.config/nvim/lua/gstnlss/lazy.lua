@@ -43,7 +43,7 @@ require('lazy').setup(
       priority = 1000,
       opts = {},
       config = function()
-        vim.cmd('colorscheme tokyonight-moon')
+        vim.cmd('colorscheme tokyonight-night')
       end
     },
 
