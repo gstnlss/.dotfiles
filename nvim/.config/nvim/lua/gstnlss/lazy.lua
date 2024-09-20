@@ -106,12 +106,6 @@ require('lazy').setup(
     },
     'rmagatti/auto-session',
     'petertriho/nvim-scrollbar',
-    {
-      'aserowy/tmux.nvim',
-      config = function()
-        require('tmux').setup({ copy_sync = { enable = false } })
-      end
-    },
 
     -- Commenting
     'numToStr/Comment.nvim',
