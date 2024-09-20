@@ -109,9 +109,7 @@ require('lazy').setup(
     {
       'aserowy/tmux.nvim',
       config = function()
-        require('tmux').setup(
-          { copy_sync = { enable = true, redirect_to_clipboard = true } }
-        )
+        require('tmux').setup({ copy_sync = { enable = false } })
       end
     },
 

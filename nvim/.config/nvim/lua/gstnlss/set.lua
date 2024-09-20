@@ -6,9 +6,9 @@ vim.g.mapleader = ' '
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
@@ -35,20 +35,4 @@ vim.opt.colorcolumn = '100'
 
 vim.opt.mouse = ''
 
--- vim.opt.clipboard = 'unnamedplus'
-
 vim.cmd [[filetype plugin on]]
-
--- System clipboard config for WSL2
--- local os_release = vim.uv.os_uname().release;
--- if os_release:find('WSL2') then
---   vim.opt.clipboard = {
---     name = 'WslClipboard',
---     copy = { ['+'] = 'clip.exe', ['*'] = 'clip.exe' },
---     paste = {
---       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
---     },
---     cache_enabled = 0
---   }
--- end
