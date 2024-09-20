@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 zstyle ':omz:plugins:nvm' autoload yes
 
 export ZSH="$HOME/.local/share/oh-my-zsh" # Path to your oh-my-zsh installation.

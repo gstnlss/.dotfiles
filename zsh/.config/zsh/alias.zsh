@@ -1,8 +1,11 @@
+#!/usr/bin/env zsh
+
 if [[ -x "$(command -v nvim)" ]]; then
   alias vi=nvim
   alias vim=nvim
 fi
 
+# Void Linux aliases
 if [[ -x "$(command -v xbps-install)" ]]; then
   alias xi="sudo xbps-install"
 fi
