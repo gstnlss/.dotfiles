@@ -4,8 +4,8 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  project_folders="$(find ~/projects -mindepth 1 -maxdepth 1 -type d)"
-  selected="$(echo -e "$project_folders\n$HOME/.dotfiles" | fzf)"
+  session_folders="$(find ~/work ~/repos ~/projects -mindepth 1 -maxdepth 1 -type d 2> /dev/null)\n"
+  selected="$(echo -e "${session_folders}${HOME}/.dotfiles" | fzf)"
 fi
 
 if [[ -z $selected ]]; then
