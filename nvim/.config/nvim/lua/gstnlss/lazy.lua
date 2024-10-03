@@ -83,7 +83,7 @@ require('lazy').setup(
         { 'hrsh7th/cmp-path' }
       }
     },
-    -- General Purpose LSP
+    -- LSP
     {
       'pmizio/typescript-tools.nvim',
       dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -96,6 +96,7 @@ require('lazy').setup(
       version = 'v1.x.x',
       dependencies = { 'neovim/nvim-lspconfig' }
     },
+    { 'zk-org/zk-nvim' },
 
     -- UI/UX
     'nvim-lualine/lualine.nvim',

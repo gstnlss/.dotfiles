@@ -16,6 +16,8 @@ local terraform = { require 'efmls-configs.formatters.terraform_fmt' }
 
 local yaml = { require 'efmls-configs.linters.yamllint' }
 
+local markdown = { require 'efmls-configs.formatters.mdformat' }
+
 return function()
   lspconfig.efm.setup(
     {
@@ -30,7 +32,8 @@ return function()
           javascriptreact = tsserver,
           css = css,
           terraform = terraform,
-          yaml = yaml
+          yaml = yaml,
+          markdown = markdown
         }
       }
     }

@@ -22,7 +22,8 @@ local formatting_options = {
       'javascriptreact',
       'css',
       'terraform',
-      'yaml'
+      'yaml',
+      'markdown'
     },
     ['jsonls'] = { 'json' },
     ['docker_compose_language_service'] = { 'yaml' }
