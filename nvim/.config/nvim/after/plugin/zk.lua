@@ -10,10 +10,19 @@ require('zk').setup(
 
 local opts = { noremap = true, silent = false }
 
-vim.api.nvim_set_keymap(
-  'n', '<leader>zn',
-    '<Cmd>ZkNew { dir = vim.fn.expand(\'$ZK_NOTEBOOK_DIR/notes\'), title = vim.fn.input(\'Title: \') }<CR>',
-    opts
+vim.keymap.set(
+  'n', '<leader>zn', function()
+    local title = vim.fn.input('Title: ');
+
+    if string.len(title) ~= 0 then
+      vim.cmd(
+        'ZkNew { dir = vim.fn.expand(\'$ZK_NOTEBOOK_DIR/notes\'), title = "' ..
+          title .. '" }'
+      )
+    end
+
+    -- '<Cmd>ZkNew { dir = vim.fn.expand(\'$ZK_NOTEBOOK_DIR/notes\'), title = vim.fn.input(\'Title: \') }<CR>'
+  end, opts
 )
 vim.api.nvim_set_keymap(
   'n', '<leader>zj',
