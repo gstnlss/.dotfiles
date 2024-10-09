@@ -3,4 +3,5 @@ zsh/.config/zsh/.zcompdump*
 taskwarrior/.local/share/taskwarrior/*pem
 taskwarrior/.local/share/taskwarrior/*data
 taskwarrior/.local/share/taskwarrior/*log
+taskwarrior/.config/task/sync.rc
 .luarc.json

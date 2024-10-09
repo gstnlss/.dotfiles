@@ -2,3 +2,4 @@ data.location=~/.local/share/task
 hooks.location=~/.config/task/hooks
 
 include dark-256.theme
+include sync.rc
