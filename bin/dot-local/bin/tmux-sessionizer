@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Taken from https://github.com/ThePrimeagen/.dotfiles with some modifications
 
+
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
+  opencode_config="${HOME}/.config/opencode"
   session_folders="$(find ~/Code -mindepth 2 -maxdepth 2 -type d 2> /dev/null)\n"
-  selected="$(echo -e "${session_folders}${HOME}/.config/opencode/" | fzf)"
+  selected="$(echo -e "${session_folders}${opencode_config}" | fzf)"
 fi
 
 if [[ -z $selected ]]; then
