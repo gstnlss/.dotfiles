@@ -1,13 +1,29 @@
 #!/usr/bin/env bash
-# Taken from https://github.com/ThePrimeagen/.dotfiles with some modifications
-
+# source: https://github.com/ThePrimeagen/.dotfiles with some modifications
 
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  opencode_config="${HOME}/.config/opencode"
-  session_folders="$(find ~/Code -mindepth 2 -maxdepth 2 -type d 2> /dev/null)\n"
-  selected="$(echo -e "${session_folders}${opencode_config}" | fzf)"
+  # Hardcoded folders to always include
+  declare -a hardcoded_folders=(
+    "${HOME}/.config/opencode"
+    "${HOME}/Documents/ledger"
+    # Add more hardcoded folders here
+  )
+
+  # Find folders in ~/Code
+  session_folders="$(find ~/Code -mindepth 2 -maxdepth 2 -type d 2> /dev/null)"
+
+  # Build the list: hardcoded folders + find results
+  all_folders=""
+  for folder in "${hardcoded_folders[@]}"; do
+    if [[ -d "$folder" ]]; then
+      all_folders+="$folder"$'\n'
+    fi
+  done
+  all_folders+="$session_folders"
+
+  selected="$(echo "$all_folders" | fzf)"
 fi
 
 if [[ -z $selected ]]; then
