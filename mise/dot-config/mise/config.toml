@@ -3,6 +3,7 @@ node = "latest"
 ruby = "latest"
 rust = "latest"
 python = "latest"
+bun = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node", "python"]
