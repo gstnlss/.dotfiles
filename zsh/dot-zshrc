@@ -47,6 +47,7 @@ source "$ZSH/oh-my-zsh.sh"
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
+alias ws=websearch
 
 bindkey -v
 bindkey -s ^P "tmux-sessionizer\n"

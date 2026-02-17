@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Interactive web search using SearxNG and fzf
+# Usage: websearch <query>
+#   - Searches via searxng.gstnlss.xyz
+#   - Shows results in fzf picker with URL preview
+#   - Opens selected result in $BROWSER
+# Dependencies: curl, jq, fzf
+
+query="$*"
+
+if [ "$query" = "" ]; then
+  read -rp "Search query: " query
+fi
+
+query="$(echo "$query" | tr " " "+")"
+
+search_url="https://searxng.gstnlss.xyz/search?q=${query}&format=json"
+selected=$(curl "$search_url"\
+  | jq -r '.results[] | "\(.title)\t\(.url)"'\
+  | fzf --prompt="Search: " --delimiter="\t" --with-nth=1 --preview="echo {2}"\
+  | cut -f2)
+
+[ "$selected" != "" ] && "$BROWSER" "$selected"
