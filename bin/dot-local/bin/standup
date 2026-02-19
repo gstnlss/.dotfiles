@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# standup - Run the appropriate standup report based on day of week
+#
+# Usage: standup
+#
+# On weekends or Monday: shows last Friday's completed tasks + annotated pending
+# On Tue-Fri: shows yesterday's completed tasks + annotated pending
+
+set -euo pipefail
+
+# Day of week: 1=Monday, 7=Sunday
+dow=$(date +%u)
+
+if [[ $dow -eq 1 || $dow -eq 6 || $dow -eq 7 ]]; then
+    # Monday, Saturday, or Sunday -> show Friday
+    
+    case $dow in
+        1) offset=3 ;;  # Monday -> 3 days back
+        6) offset=1 ;;  # Saturday -> 1 day back
+        7) offset=2 ;;  # Sunday -> 2 days back
+    esac
+    
+    # macOS date vs GNU date
+    if date -v-1d &>/dev/null; then
+        target_date=$(date -v-"${offset}"d +%Y-%m-%d)
+    else
+        target_date=$(date -d "-${offset} days" +%Y-%m-%d)
+    fi
+    
+else
+    if date -v-1d &>/dev/null; then
+        target_date=$(date -v-1d +%Y-%m-%d)
+    else
+        target_date=$(date -d "-1 day" +%Y-%m-%d)
+    fi
+fi
+
+echo "📋 Standup Report: $target_date"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "✅ COMPLETED"
+task standup status:Completed modified:"$target_date" 2>/dev/null || echo "0 tasks";
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "📝 UPDATED"
+task standup status:Pending modified:"$target_date" 2>/dev/null || echo "0 tasks";
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
