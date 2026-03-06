@@ -1,30 +1,5 @@
 #!/usr/bin/env zsh
 
-# Keep dotfiles up to date, checks once every 24h
-DOT_DIRS=(
-  "$HOME/Code/gstnlss/dotfiles"
-  "$HOME/Code/gstnlss/ume.nvim"
-)
-for repo in "${DOT_DIRS[@]}"; do
-  if [ -d "$repo/.git" ]; then
-    flag_file="$repo/.last_pulled_time"
-
-    if [ ! -f "$flag_file" ]; then
-      (cd "$repo" && git pull 2>&1 > /dev/null)
-      date +%s > "$flag_file"
-    else
-      last_pull=$(cat "$flag_file")
-      now=$(date +%s)
-      elapsed=$(( now - last_pull ))
-
-      if (( elapsed > 86400 )); then
-        (cd "$repo" && git pull 2>&1 > /dev/null)
-        date +%s > "$flag_file"
-      fi
-    fi
-  fi
-done
-
 export LANG="en_US.UTF-8"
 export EDITOR="nvim"
 export BROWSER="firefox"
@@ -39,7 +14,7 @@ ZSH_THEME="robbyrussell"
 DISABLE_UPDATE_PROMPT="true"
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
-plugins=(git nvm docker docker-compose)
+plugins=(git nvm docker docker-compose fzf)
 source "$ZSH/oh-my-zsh.sh"
 
 [[ -n "$SSH_CONNECTION" ]] && PROMPT="%{$fg_bold[red]%}[%m] $PROMPT"
@@ -47,11 +22,10 @@ source "$ZSH/oh-my-zsh.sh"
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
-alias ws=websearch
 
 bindkey -v
-bindkey -s ^P "tmux-sessionizer\n"
-bindkey -s ^O "tmux-sessionizer $HOME\n"
+# bindkey -s ^P "tmux-sessionizer\n"
+# bindkey -s ^O "tmux-sessionizer $HOME\n"
 
 export PATH="$HOME/.local/bin:$HOME/.luarocks/bin:$PATH"
 OS="$(uname)"
