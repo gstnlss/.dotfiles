@@ -14,5 +14,10 @@ bold = { family = "Iosevka Nerd Font Mono", style = "Bold" }
 italic = { family = "Iosevka Nerd Font Mono", style = "Italic" }
 bold_italic = { family = "Iosevka Nerd Font Mono", style = "Bold Italic" }
 
+[keyboard]
+bindings = [
+  { key = "F11", action = "ToggleFullscreen" }
+]
+
 [general]
 import = ["~/.config/alacritty/themes/gruvbox.toml"]
